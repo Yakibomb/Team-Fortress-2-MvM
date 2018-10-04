@@ -1,0 +1,5521 @@
+//Blacksmithed Bots
+//This mission is made for mvm_hillside_v7
+//Made by Yakibomb
+
+//This is Version 3
+//Custom Upgrades should now work
+
+//Version 2
+//Boss health doubled
+//enabled missing disabled models
+
+//Mission Description
+//Use Mann Power runes to beat your enemies!
+//Power ups are given at the beginning of every wave via a custom spawner that spawns stunned support robots the players must destroy for the powerup to drop.
+//Power ups also spawn periodically throughout the wave outside the castle, inside the castle walls, and near the bomb hatch. Hoovies keep them safe for you. Kill them.
+
+#base robot_medieval_yakibomb.pop
+
+WaveSchedule
+{
+	StartingCurrency		600
+	RespawnWaveTime 4
+	CanBotsAttackWhileInSpawnRoom no
+	FixedRespawnWaveTime Yes
+	AddSentryBusterWhenKillCountExceeds 15
+	AddSentryBusterWhenKillCountExceeds 1500
+	
+	// SIGSEGV EXCLUSIVE COMMANDS
+	
+	CustomUpgradesFile "mvm_customupgrades_hillside_v7_yakibomb.txt" [$SIGSEGV]
+	NoReanimators 1
+	MedievalMode 0
+	BonusRatioFull 1.00
+	BonusRatioHalf 0.95
+
+	PrecacheModel "models\bots\merasmus\merasmus.mdl"
+	PrecacheModel "models\bots\skeleton_sniper\skeleton_sniper.mdl"
+
+//	DisableSound "Announcer.MVM_Manned_Up"
+//	DisableSound "Announcer.MVM_First_Wave_Start"
+//	DisableSound "Announcer.MVM_Wave_Start"
+//	DisableSound "Announcer.MVM_Wave_End"
+//	DisableSound "Announcer.MVM_Wave_Lose"
+//	DisableSound "Announcer.MVM_Final_Wave_Start"
+//	DisableSound "Announcer.MVM_Final_Wave_End"
+//	DisableSound "Announcer.MVM_Manned_Up_Wave_End"
+//	DisableSound "Announcer.MVM_Bomb_Reset"
+//	DisableSound "Announcer.MVM_Bonus"
+//	DisableSound "Announcer.MVM_Get_To_Upgrade"
+//	DisableSound "Announcer.MVM_Robots_Planted"
+//	DisableSound "Announcer.MVM_Tank_Planted"
+//	DisableSound "Announcer.MVM_All_Dead"
+//	DisableSound "Announcer.MVM_Bomb_Alert_Entered"
+//	DisableSound "Announcer.MVM_Bomb_Alert_Near_Hatch"
+//	DisableSound "Announcer.MVM_Bomb_Alert_Deploying"
+//	DisableSound "Announcer.MVM_Sentry_Buster_Alert"
+//	DisableSound "Announcer.MVM_Sentry_Buster_Alert_Another"
+//	DisableSound "Announcer.MVM_Spy_Alert"
+//	DisableSound "Announcer.MVM_Tank_Alert_Spawn"
+//	DisableSound "Announcer.MVM_Tank_Alert_Another"
+//	DisableSound "Announcer.MVM_Tank_Alert_Multiple"
+//	DisableSound "Announcer.MVM_Tank_Alert_Halfway"
+//	DisableSound "Announcer.MVM_Tank_Alert_Halfway_Multiple"
+//	DisableSound "Announcer.MVM_Tank_Alert_Near_Hatch"
+//	DisableSound "Announcer.MVM_Tank_Alert_Deploying"
+//	DisableSound "Announcer.MVM_General_Wave_Start"
+//	DisableSound "Announcer.MVM_General_Destruction"
+//	DisableSound "Announcer.MVM_Game_Over_Loss"
+
+
+//"Mannpower.InvulnerableOn"
+
+//"Powerup.PickUpTemp.Crit"
+
+//"Powerup.PickUpTemp.Uber"
+
+//"Powerup.PickUpKnockout"
+
+	DisableSound "Powerup.Knockout_Melee_Hit"
+
+//"Powerup.Volume.Use"
+
+//"Powerup.PickUpBase"
+
+//"Powerup.PickUpAgility"
+
+//"Powerup.PickUpHaste"
+
+//"Powerup.PickUpPrecision"
+
+//"Powerup.PickUpRegeneration"
+
+//"Powerup.PickUpResistance"
+
+//"Powerup.PickUpStrength"
+
+//"Powerup.PickUpVampire"
+
+//"Powerup.PickUpSupernova"
+
+//"Powerup.PickUpSupernovaActivate"
+
+//"Powerup.PickUpPlague"
+
+	DisableSound "Powerup.PickUpPlagueInfected"
+
+	DisableSound "Powerup.PickUpPlagueInfectedLoop"
+
+//"Powerup.PickUpThorns"
+
+//"Powerup.PickUpReflect"
+
+//"Powerup.Reflect.Reflect"
+
+//"Powerup.PickUpKing"
+
+//"Powerup.ReducedDamage"
+
+
+		ItemWhitelist [$SIGSEGV]
+		{
+			Allowed		"saxxy"
+			Allowed		"tf_weapon_lunchbox_drink"
+			Allowed		"tf_weapon_jar_milk"
+			Allowed		"tf_weapon_cleaver"
+			Allowed		"tf_weapon_bat"
+			Allowed		"tf_weapon_bat_wood"
+			Allowed		"tf_weapon_bat_fish"
+			Allowed		"tf_weapon_bat_giftwrap"
+			Allowed		"tf_weapon_buff_item"
+			Allowed		"tf_weapon_parachute"
+			Allowed		"tf_weapon_shovel"
+			Allowed		"tf_weapon_katana"
+			Allowed		"tf_weapon_fireaxe"
+			Allowed		"tf_weapon_breakable_sign"
+			Allowed		"tf_weapon_slap"
+			Allowed		"tf_weapon_jar_gas"
+			Allowed		"tf_weapon_flaregun"
+		//	Allowed		"tf_weapon_flaregun_revenge"
+			Allowed		"tf_weapon_rocketpack"
+			Allowed		"tf_weapon_cannon"
+			Allowed		"tf_wearable_demoshield"
+			Allowed		"tf_weapon_bottle"
+			Allowed		"tf_weapon_sword"
+			Allowed		"tf_weapon_stickbomb"
+			Allowed		"tf_weapon_lunchbox"
+			Allowed		"tf_weapon_fists"
+			Allowed		"tf_weapon_wrench"
+			Allowed		"tf_weapon_robot_arm"
+		//	Allowed		"tf_weapon_shotgun_building_rescue"
+		//	Allowed		"tf_weapon_mechanical_arm"
+			Allowed		"tf_weapon_laser_pointer"
+			Allowed		"tf_weapon_pda_engineer_build"
+			Allowed		"tf_weapon_pda_engineer_destroy"
+			Allowed		"tf_weapon_builder"
+			Allowed		"tf_weapon_crossbow"
+			Allowed		"tf_weapon_bonesaw"
+			Allowed		"tf_weapon_compound_bow"
+			Allowed		"tf_weapon_jar"
+			Allowed		"tf_weapon_club"
+			Allowed		"tf_weapon_knife"
+			Allowed		"tf_weapon_pda_spy"
+			Allowed		"tf_weapon_invis"
+			Allowed		"tf_wearable"
+			Allowed		"tf_powerup_bottle"
+		//	Allowed		"tf_weapon_spellbook"
+		}
+		
+		ItemBlacklist [$SIGSEGV]
+		{
+			DefIndex	735		//Sapper
+			DefIndex	736		//Sapper
+			DefIndex	810		//Sapper
+			DefIndex	831		//Sapper
+			DefIndex	933		//Sapper
+			DefIndex	1080	//Sapper
+			DefIndex	1102	//Sapper
+		}
+
+
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	
+// These powerups spawn throughout the wave
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	
+// setpos 50 215 -185
+    ExtraSpawnPoint [$SIGSEGV]
+		{
+			Name "powerup_respawner_outside"
+			TeamNum 3
+			X    "50.0"
+			Y "215.0"
+			Z  "-185.0"
+		}
+
+// setpos 2650 330 -185
+    ExtraSpawnPoint [$SIGSEGV]
+		{
+			Name "powerup_respawner_mid"
+			TeamNum 3
+			X    "2650.0"
+			Y "330.0"
+			Z  "-185.0"
+		}
+
+// setpos 4245 830 -185
+    ExtraSpawnPoint [$SIGSEGV]
+		{
+			Name "powerup_respawner_hatch"
+			TeamNum 3
+			X    "4245.0"
+			Y "830.0"
+			Z  "-185.0"
+		}
+
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	
+// These powerups spawn only in the beginning. Spawns in front of the outside upgrades station.
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	
+
+    ExtraSpawnPoint [$SIGSEGV]
+		{
+			Name "powerup_wave_start_1"
+			TeamNum 3
+			X    "-1450.0"
+			Y "-90.0"
+			Z  "-300.0"
+		}
+
+    ExtraSpawnPoint [$SIGSEGV]
+		{
+			Name "powerup_wave_start_2"
+			TeamNum 3
+			X    "-1550"
+			Y "-90.0"
+			Z  "-300.0"
+		}
+
+    ExtraSpawnPoint [$SIGSEGV]
+		{
+			Name "powerup_wave_start_3"
+			TeamNum 3
+			X    "-1650"
+			Y "-90.0"
+			Z  "-300.0"
+		}
+
+    ExtraSpawnPoint [$SIGSEGV]
+		{
+			Name "powerup_wave_start_4"
+			TeamNum 3
+			X    "-1750"
+			Y "-90.0"
+			Z  "-300.0"
+		}
+
+    ExtraSpawnPoint [$SIGSEGV]
+		{
+			Name "powerup_wave_start_5"
+			TeamNum 3
+			X    "-1850"
+			Y "-90.0"
+			Z  "-300.0"
+		}
+
+    ExtraSpawnPoint [$SIGSEGV]
+		{
+			Name "powerup_wave_start_6"
+			TeamNum 3
+			X    "-1950"
+			Y "-90.0"
+			Z  "-300.0"
+		}
+
+	Mission	//Sentry Buster!
+	{
+		Objective DestroySentries
+		Where spawnbot
+
+		CooldownTime 60
+
+		TFBot
+		{
+			Template T_TFBot_BB_SentryBuster
+			Tag bot_sentrybuster
+		}
+	}
+	
+	Mission // Huntsman-Sniper - wave 3
+	{
+		Objective Sniper
+
+		InitialCooldown 30
+		Where spawnbot_wall_left
+		BeginAtWave 5
+		RunForThisManyWaves 1
+		CooldownTime 30
+		DesiredCount 3
+
+		RandomChoice
+		{
+			TFBot
+			{
+				Template T_TFBot_BB_Sniper_Huntsman
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_STRENGTH
+				}
+			}
+			TFBot
+			{
+				Template T_TFBot_BB_Sniper_Huntsman
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_PRECISION
+				}
+			}
+		}
+	}
+	
+	Mission // Huntsman-Sniper - wave 4
+	{
+		Objective Spy
+
+		InitialCooldown 30
+		Where spawnbot
+		BeginAtWave 4
+		RunForThisManyWaves 1
+		CooldownTime 45
+		DesiredCount 2
+
+			TFBot
+			{
+				Template T_TFBot_BB_Spy
+			}
+	}
+
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaitWhenDone 30
+		Checkpoint Yes
+		
+
+		Explanation [$SIGSEGV]
+		{
+			Line "{red}===BLACKSMITHED BOTS==="
+			Line "{yellow}Use your Mann Powers to beat back ROBOTS!"
+			Line "{yellow}(Oh and defeat Merasmus too.)"
+			Line "{yellow}Recommended: 3-4 players"
+			Line "{green}Tip:{reset} New equips! You can equip the Loose Cannon, Wrangler, Jarate, Thermal Thruster, Gas Passer, or any Flare Gun!"
+			Line "{green}Tip:{reset} Sentries only deal 35% damage, but rockets deal 2x damage. Oh, did I mention you can use buildings?!"
+		}
+
+
+//		SentryGun [$SIGSEGV]	//Spawns a sentry top-right of castle walls
+//		{
+//			Position
+//			{
+//				X    "1440.189941" 
+//				Y    "1520.817871"
+//				Z     "343.103607"
+//				Pitch   "45.210018"
+//				Yaw   "-179.675491"
+//				Roll    "0.00"
+//			}
+//			TeamNum 2
+//			Level 1
+//		}
+	
+	
+//		SentryGun [$SIGSEGV]	//Spawns a sentry top-left of castle walls
+//		{
+//			Position
+//			{
+//				X    "1422.402344" 
+//				Y    "-382.935303"
+//				Z     "343.103607"
+//				Pitch   "64.878014"
+//				Yaw   "177.684418"
+//				Roll    "0.00"
+//			}
+//			TeamNum 2
+//			Level 1
+//		}
+		
+//		SentryGun [$SIGSEGV]	//Spawns a sentry inside the castle walls
+//		{
+//			Position
+//			{
+//				X    "1816.992065" 
+//				Y    "328.278107"
+//				Z     "-180.968689"
+//				Pitch   "38.214069"
+//				Yaw   "32.358635"
+//				Roll    "0.00"
+//			}
+//			TeamNum 2
+//			Level 2
+//		}
+		
+//		SentryGun [$SIGSEGV]	//Spawns a sentry inside the castle walls
+//		{
+//			Position
+//			{
+//				X    "1813.066528" 
+//				Y    "858.864929"
+//				Z     "-180.968689"
+//				Pitch   "27.324060"
+//				Yaw   "-44.699303"
+//				Roll    "0.00"
+//			}
+//			TeamNum 2
+//			Level 2
+//		}
+		
+		
+//		SentryGun [$SIGSEGV]	//Spawns a sentry near the final capture point
+//		{
+//			Position
+//			{
+//				X    "3218.185791" 
+//				Y    "301.510040"
+//				Z     "89.093964"
+//				Pitch   "30.822012"
+//				Yaw   "-125.915581"
+//				Roll    "0.00"
+//			}
+//			TeamNum 2
+//			Level 3
+//		}
+		
+		
+//		SentryGun [$SIGSEGV]	//Spawns a sentry near the final capture point
+//		{
+//			Position
+//			{
+//				X    "3180.976807" 
+//				Y    "190.310059"
+//				Z     "89.093964"
+//				Pitch   "39.468029"
+//				Yaw   "86.970497"
+//				Roll    "0.00"
+//			}
+//			TeamNum 2
+//			Level 3
+//		}
+
+
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+//----------WAVE 1----------
+//Currency: 500 (with bonus: 550)
+//STARTING POWER-UPS: Knockout Only
+//RESPAWNING POWER-UPS
+//OUTSIDE: Agility Only
+//CASTLE: Knockout Only
+//HATCH: 90/10 Knockout or Plague
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+
+		WaveSpawn
+		{			
+			Name "wave1_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_1
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+						
+			TFBot
+			{
+				Template TF_COND_RUNE_KNOCKOUT_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave1_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_2
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_KNOCKOUT_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave1_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_3
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_KNOCKOUT_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave1_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_4
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 4
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_KNOCKOUT_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave1_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_5
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_KNOCKOUT_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave1_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_6
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 6
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+				
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_KNOCKOUT_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave1_powerup_respawner_outside"
+			
+			Where powerup_respawner_outside
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 35
+			TotalCurrency 0
+			
+			Support 1
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_AGILITY
+			}
+		}
+
+		WaveSpawn
+		{
+			Name "wave1_powerup_respawner_mid"
+			
+			Where powerup_respawner_mid
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 20
+			TotalCurrency 0
+			
+			Support 1
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_KNOCKOUT
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave1_powerup_respawner_hatch"
+			
+			Where powerup_respawner_hatch
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 10
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_PLAGUE
+				}
+			}
+		}
+		
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+//WAVE 1 STARTS HERE
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave1_powerup_wave_start"
+
+			Name "wave1_phase1"
+			
+			Where spawnbot
+			TotalCount 12
+			MaxActive 8
+			SpawnCount 2
+			WaitBeforeStarting 7
+			WaitBetweenSpawns 6
+			TotalCurrency 60
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_KNOCKOUT
+					}
+				}
+			}
+		}
+		
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave1_powerup_wave_start"
+			
+			Name "wave1_phase1"
+			
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 13
+			WaitBetweenSpawns 0
+			TotalCurrency 20
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Giant_Heavyweapons_Heavyweight_Champ
+			}
+		}
+				
+		WaveSpawn
+		{
+			WaitForAllDead "wave1_phase1"
+		
+			Name "wave1_phase2-1"
+			
+			Where spawnbot
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 2
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 7
+			TotalCurrency 20
+			
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ
+				}
+				TFBot		
+				{
+					Template T_TFBot_BB_Medic_Kritz
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave1_phase1"
+
+			Name "wave1_phase2-1"
+			
+			Where spawnbot
+			TotalCount 18
+			MaxActive 8
+			SpawnCount 2
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 5
+			TotalCurrency 90
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_KNOCKOUT
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave1_phase1"
+			
+			Name "wave1_phase2-1"
+			
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 17
+			WaitBetweenSpawns 0
+			TotalCurrency 20
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Giant_Heavyweapons_Heavyweight_Champ
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave1_phase2-1"
+		
+			Name "wave1_phase2-2"
+			
+			Where spawnbot
+			TotalCount 12
+			MaxActive 8
+			SpawnCount 4
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 8
+			TotalCurrency 60
+			
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ
+				}
+				TFBot		
+				{
+					Template T_TFBot_BB_Medic_Kritz
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave1_phase2-1"
+			
+			Name "wave1_phase2-2"
+			
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 0
+			TotalCurrency 30
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Giant_Heavyweapons_Heavyweight_Champ
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_KNOCKOUT
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave1_phase2-2"
+			
+			FirstSpawnWarningSound "vo/mvm/mght/pyro_mvm_m_laugh_addl04.mp3"
+			DoneWarningSound "\vo\mvm\mght\pyro_mvm_m_paincrticialdeath03.mp3"
+			
+			Name "wave1_boss"
+			
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 100
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Boss_Giant_Pyro_Flare
+				Attributes UseBossHealthBar
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_VAMPIRE
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave1_boss"
+			
+			Name "wave1_boss_support"
+			
+			Where spawnbot
+			TotalCount 10
+			MaxActive 5
+			SpawnCount 5
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 3
+			TotalCurrency 100
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Scout_Sun
+			}
+		}	
+		
+	}
+	
+	
+
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+//----------WAVE 2----------
+//Currency: 500 (with bonus: 550)
+//STARTING POWER-UPS: Agility Only
+//RESPAWNING POWER-UPS
+//OUTSIDE: 33/33/33 Agility, Knockout or Haste
+//CASTLE: 50/50 Knockout or Agility
+//HATCH: Knockout Only
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaitWhenDone 30
+		Checkpoint Yes
+
+		Explanation [$SIGSEGV]
+		{
+			Line "{green}Tip:{reset} Once you die, you lose your power up! Entering spawn also automatically drops your power."
+		}
+
+		WaveSpawn
+		{
+			Name "wave2_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_1
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+						
+			TFBot
+			{
+				Template TF_COND_RUNE_AGILITY_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave2_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_2
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_AGILITY_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave2_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_3
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_AGILITY_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave2_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_4
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 4
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_AGILITY_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave2_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_5
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_AGILITY_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave2_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_6
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 6
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+						
+			TFBot
+			{
+				Template TF_COND_RUNE_AGILITY_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave2_powerup_respawner_outside"
+			
+			Where powerup_respawner_outside
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 35
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			Name "wave2_powerup_respawner_mid"
+			
+			Where powerup_respawner_mid
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 20
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave2_powerup_respawner_hatch"
+			
+			Where powerup_respawner_hatch
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 10
+			TotalCurrency 0
+			
+			Support 1
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_KNOCKOUT
+			}
+		}
+		
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+//WAVE 2 STARTS HERE
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave2_powerup_wave_start"
+			
+			Name "wave2_phase1"
+			
+			Where spawnbot
+			TotalCount 7
+			MaxActive 7
+			SpawnCount 7
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 70
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Pyro_Flare
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave2_phase1"
+			
+			Name "wave2_phase2"
+			
+			Where spawnbot
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 4
+			WaitBeforeStarting 4
+			WaitBetweenSpawns 3
+			TotalCurrency 40
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Pyro_Flare
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_AGILITY
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave2_phase1"
+			
+			Name "wave2_phase2"
+			
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 5
+			TotalCurrency 30
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Scout_Armored
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_AGILITY
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave2_phase2"
+			
+			Name "wave2_phase3"
+			
+			Where spawnbot
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 4
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 0
+			TotalCurrency 40
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Pyro_Flare
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_AGILITY
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave2_phase2"
+			
+			Name "wave2_phase3"
+			
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 30
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Scout_Armored
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_AGILITY
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave2_phase3"
+			
+			Name "wave2_phase4-1"
+			
+			Where spawnbot
+			TotalCount 7
+			MaxActive 7
+			SpawnCount 7
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 70
+			
+			Squad
+			{
+				ShouldPreserveSquad 1
+				
+				TFBot
+				{
+					Template T_TFBot_BB_Giant_Soldier_Conch
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Pyro_Flare
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Pyro_Flare
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Scout_Armored
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Scout_Armored
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Scout_Armored
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Scout_Armored
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave2_phase4-1"
+			
+			Name "wave2_phase4-2"
+			
+			Where spawnbot
+			TotalCount 8
+			MaxActive 8
+			SpawnCount 2
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 4
+			TotalCurrency 80
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Pyro_Flare
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Pyro_Flare
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Pyro_Flare
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Pyro_Flare
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Pyro_Flare
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Pyro_Flare
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Pyro_Flare
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Pyro_Flare
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Pyro_Flare
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Pyro_Flare
+					Scale 1.25
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_STENGTH
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Pyro_Flare
+					Scale 1.25
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_RESIST
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave2_phase4-1"
+			
+			Name "wave2_boss"
+			
+			FirstSpawnWarningSound "\vo\mvm\mght\scout_mvm_m_battlecry03.mp3"
+			DoneWarningSound "\vo\mvm\mght\scout_mvm_m_paincrticialdeath02.mp3"
+			
+			Where spawnbot
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 5
+			TotalCurrency 140
+			
+			Squad
+			{
+				FormationSize 100
+				
+				TFBot
+				{
+					Template T_TFBot_BB_Boss_Giant_Scout_Cleaver
+					Attributes UseBossHealthBar
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_HASTE
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Brass_Beast
+					Scale 1.2
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+			}
+		}
+		
+	}
+	
+	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+//----------WAVE 3----------
+//Currency: 600 (with bonus: 650)
+//STARTING POWER-UPS: Agility, Haste, Vampire or Knockout
+//RESPAWNING POWER-UPS
+//OUTSIDE: 20/20/20/20/20 Agility, Haste, Vampire, Knockout, or Precision
+//CASTLE: 25/25/25/25 Agility, Haste, Vampire or Knockout
+//HATCH: 75/25 Knockout or King
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaitWhenDone 30
+		Checkpoint Yes
+		
+		Explanation [$SIGSEGV]
+		{
+			Line "{green}Tip:{reset} There are a few Power Up robots scattered throughout the map. See if you can find all three!"
+		}
+
+		WaveSpawn
+		{
+			Name "wave3_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_1
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave3_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_2
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave3_powerup_wave_start"
+			
+			Where powerup_wave_start_3
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave3_powerup_wave_start"
+			
+			Where powerup_wave_start_4
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 4
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave3_powerup_wave_start"
+			
+			Where powerup_wave_start_5
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave3_powerup_wave_start"
+			
+			Where powerup_wave_start_6
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 6
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+						
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave3_powerup_respawner_outside"
+			
+			Where powerup_respawner_outside
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 35
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_PRECISION
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			Name "wave3_powerup_respawner_mid"
+			
+			Where powerup_respawner_mid
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 20
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave3_powerup_respawner_hatch"
+			
+			Where powerup_respawner_hatch
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 10
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KING
+				}
+			}
+		}
+		
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+//WAVE 3 STARTS HERE
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave3_powerup_wave_start"
+			
+			Name "wave3_phase1"
+			
+			Where spawnbot
+			TotalCount 10
+			MaxActive 6
+			SpawnCount 2
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 6
+			TotalCurrency 100
+			
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Warrior
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_VAMPIRE
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Medic_Quick_Fix
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_HASTE
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave3_powerup_wave_start"
+			
+			Name "wave3_phase1"
+			
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 1
+			WaitBeforeStarting 12
+			WaitBetweenSpawns 8
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+					Scale 1.2
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_VAMPIRE
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave3_phase1"
+			
+			Name "wave3_phase2"
+			
+			Where spawnbot
+			TotalCount 12
+			MaxActive 8
+			SpawnCount 2
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 6
+			TotalCurrency 120
+			
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Warrior
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_VAMPIRE
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Medic_Quick_Fix
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_HASTE
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave3_phase1"
+			
+			Name "wave3_phase2"
+			
+			Where spawnbot
+			TotalCount 8
+			MaxActive 4
+			SpawnCount 4
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 8
+			TotalCurrency 80
+			
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Giant_Heavyweapons_Heavyweight_Champ
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Medic_Quick_Fix
+					Attributes SpawnWithFullCharge
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_HASTE
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Medic_Quick_Fix
+					Attributes SpawnWithFullCharge
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_HASTE
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Medic_Quick_Fix
+					Attributes SpawnWithFullCharge
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_HASTE
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave3_phase1"
+			
+			Name "wave3_phase2"
+			
+			Where spawnbot
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 1
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 4
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+					Scale 1.2
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_VAMPIRE
+					}
+				}
+			}
+		}
+		
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave3_phase2"
+			
+			Name "wave3_phase3"
+			
+			Where spawnbot
+			TotalCount 6
+			MaxActive 6
+			SpawnCount 6
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 4
+			TotalCurrency 60
+			
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Warrior
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_VAMPIRE
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Medic_Quick_Fix
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_HASTE
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave3_phase3"
+			
+			Name "wave3_boss"
+			
+			Where spawnbot
+			TotalCount 8
+			MaxActive 6
+			SpawnCount 2
+			WaitBeforeStarting 15
+			WaitBetweenSpawns 8
+			TotalCurrency 80
+			
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Warrior
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_VAMPIRE
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Medic_Quick_Fix
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_HASTE
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave3_phase3"
+			
+			Name "wave3_boss"
+			
+			FirstSpawnWarningSound "\vo\mvm\norm\sniper_mvm_meleedare05.mp3"
+			DoneWarningSound "\vo\mvm\norm\sniper_mvm_domination19.mp3"
+			
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 160
+			
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Boss_Giant_Sniper_Huntsman
+					Attributes UseBossHealthBar
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_REFLECT
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Medic_Kritz
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_RESIST
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Medic_Kritz
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_RESIST
+					}
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave3_boss"
+			
+			Name "wave3_support"
+			
+			Where spawnbot_wall_left
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
+			WaitBeforeStarting 4
+			WaitBetweenSpawns 10
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Sniper_Huntsman
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Sniper_Huntsman
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Sniper_Huntsman
+					Scale 1.2
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_STRENGTH
+					}
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave3_boss"
+			
+			Name "wave3_support"
+			
+			Where spawnbot_wall_right
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
+			WaitBeforeStarting 4
+			WaitBetweenSpawns 10
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Sniper_Huntsman
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Sniper_Huntsman
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Sniper_Huntsman
+					Scale 1.2
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_STRENGTH
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave3_boss"
+			
+			Name "wave3_support"
+			
+			Where spawnbot
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 4
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 10
+			TotalCurrency 0
+			
+			Support 1
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Sniper_Huntsman
+			}
+		}
+	}
+	
+	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+//----------WAVE 4----------
+//Currency: 600 (with bonus: 650)
+//STARTING POWER-UPS: Precision, Agility, Haste, Vampire, Knockout, King
+//RESPAWNING POWER-UPS
+//OUTSIDE: 25/25/25/25 Precision, Agility, Haste, or Vampire
+//CASTLE: 25/25/25/25 Precision, Agility, Haste, or Vampire
+//HATCH: 50/50 Knockout or King
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaitWhenDone 30
+		Checkpoint Yes
+		
+		Explanation [$SIGSEGV]
+		{
+			Line "{green}Tip:{reset} Drop your power up manually by using the Drop Intel key ('L' by default)."
+		}
+
+		WaveSpawn
+		{
+			Name "wave4_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_1
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_PRECISION_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave4_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_2
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_PRECISION_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave4_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_3
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_PRECISION_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave4_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_4
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 4
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_PRECISION_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave4_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_5
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_PRECISION_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KING_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave4_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_6
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 6
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_PRECISION_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KING_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave4_powerup_respawner_outside"
+			
+			Where powerup_respawner_outside
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 35
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_PRECISION
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			Name "wave4_powerup_respawner_mid"
+			
+			Where powerup_respawner_mid
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 20
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_PRECISION
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave4_powerup_respawner_hatch"
+			
+			Where powerup_respawner_hatch
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 10
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KING
+				}
+			}
+		}
+		
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+//WAVE 4 STARTS HERE
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+
+
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave4_powerup_wave_start"
+			
+			Name "wave4_phase1"
+			
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 90
+
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Giant_Soldier_Crit
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_STRENGTH
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Loose_Cannon
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave4_powerup_wave_start"
+			
+			Name "wave4_phase1"
+			
+			Where spawnbot
+			TotalCount 9
+			MaxActive 6
+			SpawnCount 3
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 5
+			TotalCurrency 45
+
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+					Scale 1.2
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_RESIST
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave4_phase1"
+			
+			Name "wave4_phase2"
+			
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 10
+			TotalCurrency 90
+			
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Giant_Soldier_Crit
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_PRECISION
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Loose_Cannon
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave4_phase1"
+			
+			Name "wave4_phase2"
+			
+			Where spawnbot
+			TotalCount 8
+			MaxActive 4
+			SpawnCount 4
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 10
+			TotalCurrency 80
+
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Giant_Demoman_Knight
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_RESIST
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Loose_Cannon
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Loose_Cannon
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Loose_Cannon
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave4_phase1"
+			
+			Name "wave4_phase2"
+			
+			Where spawnbot
+			TotalCount 8
+			MaxActive 8
+			SpawnCount 2
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 5
+			TotalCurrency 40
+
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+					Scale 1.2
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_STRENGTH
+					}
+				}
+			}
+		}
+		
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave4_phase2"
+			
+			Name "wave4_phase3"
+			
+			Where spawnbot
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 10
+			TotalCurrency 100
+			
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Giant_Demoman_Knight
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Giant_Soldier_Crit
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_HASTE
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave4_phase2"
+			
+			Name "wave4_phase3"
+			
+			Where spawnbot
+			TotalCount 11
+			MaxActive 6
+			SpawnCount 3
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 5
+			TotalCurrency 55
+
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+					Scale 1.2
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_STRENGTH
+					}
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave4_phase3"
+			
+			Name "wave4_boss"
+			
+			FirstSpawnWarningSound "\vo\mvm\mght\demoman_mvm_m_dominationengineer06.mp3"
+			DoneWarningSound "\vo\mvm\mght\demoman_mvm_m_autodejectedtie01.mp3"
+			
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 3
+			TotalCurrency 100
+
+			TFBot
+			{
+				Template T_TFBot_BB_Boss_Giant_Demoman_Loose_Cannon
+				Attributes UseBossHealthBar
+				Attributes AlwaysCrit
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_STRENGTH
+				}
+			}
+		}
+		
+	}
+	
+	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+//----------WAVE 5----------
+//Currency: ???
+//STARTING POWER-UPS: Precision, Haste, Vampire, King, Strength
+//RESPAWNING POWER-UPS
+//OUTSIDE: Haste, Vampire, Agility, King, Strength (3x chance), Resist
+//CASTLE: 33/33/33 Strength, Haste, Vampire
+//HATCH: Knockout Only
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaitWhenDone 30
+		Checkpoint Yes
+		
+		WaveSpawn
+		{
+			Name "wave5_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_1
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_PRECISION_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave5_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_2
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave5_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_3
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave5_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_4
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 4
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_STRENGTH_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave5_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_5
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_STRENGTH_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave5_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_6
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 6
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KING_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave5_powerup_respawner_outside"
+			
+			Where powerup_respawner_outside
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 35
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KING
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_RESIST
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			Name "wave5_powerup_respawner_mid"
+			
+			Where powerup_respawner_mid
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 20
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave5_powerup_respawner_hatch"
+			
+			Where powerup_respawner_hatch
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 10
+			TotalCurrency 0
+			
+			Support 1
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_KNOCKOUT
+			}
+		}
+		
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+//WAVE 5 STARTS HERE
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave5_powerup_wave_start"
+			
+			Name "wave5_phase1"
+			
+			Where spawnbot
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 2
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 3
+			TotalCurrency 40
+
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast_Large
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Medic_Uber
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_KING
+					}
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave5_phase1"
+
+			Name "wave5_phase2"
+			
+			Where spawnbot
+			TotalCount 8
+			MaxActive 8
+			SpawnCount 2
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 4
+			TotalCurrency 40
+
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+					Scale 1.2
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave5_phase1"
+			
+			Name "wave5_phase2"
+			
+			Where spawnbot
+			TotalCount 5
+			MaxActive 5
+			SpawnCount 5
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 10
+			TotalCurrency 50
+
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Backup
+					Item "The Escape Plan"
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_KING
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Medic_Uber
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast_Large
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast_Large
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast_Large
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave5_phase2"
+			
+			Name "wave5_phase3-1"
+			
+			Where spawnbot
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 9
+			TotalCurrency 20
+
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast_Large
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Medic_Uber
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_KING
+					}
+				}
+			}
+		}
+				
+		WaveSpawn
+		{
+			WaitForAllDead "wave5_phase2"
+
+			Name "wave5_phase3-2"
+			
+			Where spawnbot
+			TotalCount 7
+			MaxActive 7
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 3
+			TotalCurrency 35
+
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+					Scale 1.2
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave5_phase3-1"
+
+			Name "wave5_phase3-3"
+			
+			Where spawnbot
+			TotalCount 15
+			MaxActive 10
+			SpawnCount 5
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 9
+			TotalCurrency 150
+
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Backup
+					Item "The Escape Plan"
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_KING
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Medic_Uber
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast_Large
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast_Large
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast_Large
+				}
+			}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave5_phase3-3"
+			
+			Name "wave5_phase4"
+			
+			Where spawnbot
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 2
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 3
+			TotalCurrency 40
+
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast_Large
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Medic_Uber
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_KING
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave5_phase3-3"
+
+			Name "wave5_phase4"
+			
+			Where spawnbot
+			TotalCount 5
+			MaxActive 5
+			SpawnCount 5
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 0
+			TotalCurrency 75
+
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Backup
+					Item "The Escape Plan"
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_KING
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Medic_Uber
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast_Large
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast_Large
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast_Large
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave5_phase4"
+			
+			Name "wave5_support"
+			
+			Where spawnbot
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 1
+			WaitBeforeStarting 15
+			WaitBetweenSpawns 12
+			TotalCurrency 0
+			
+			Support 1
+
+			TFBot
+			{
+				Template T_TFBot_Medic_Amputator
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave5_phase4"
+			
+			Name "wave5_boss"
+			
+			FirstSpawnWarningSound "\vo\mvm\norm\taunts\medic_mvm_taunts15.mp3"
+			DoneWarningSound "\vo\mvm\norm\medic_mvm_laughhappy03.mp3"
+			
+			Where spawnbot
+			TotalCount 7
+			MaxActive 7
+			SpawnCount 7
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 10
+			TotalCurrency 350
+
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Giant_Heavyweapons_Heavyweight_Champ_Fast
+					Attributes UseBossHealthBar
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_RESIST
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Boss_Giant_Medic
+					Attributes UseBossHealthBar
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_KING
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Backup
+					Item "The Escape Plan"
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Backup
+					Item "The Escape Plan"
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Backup
+					Item "The Escape Plan"
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Backup
+					Item "The Escape Plan"
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Backup
+					Item "The Escape Plan"
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave5_phase4"
+
+			Name "wave5_boss"
+			
+			Where spawnbot
+			TotalCount 10
+			MaxActive 10
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 3
+			TotalCurrency 50
+
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ_Fast
+					Scale 1.2
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_AGILITY
+					}
+				}
+			}
+		}
+	}
+	
+	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+//----------WAVE 6----------
+//Currency: ???
+//STARTING POWER-UPS: King, Vampire, Resist, Knockout, Reflect
+//RESPAWNING POWER-UPS
+//OUTSIDE: 20/20/10/10/10/10/10/10 Vampire, Strength, King, Resist, Agility, Precision, Haste
+//CASTLE: 33/33/33 Strength, Resist, Agility
+//HATCH: 50/50 Knockout or Strength
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaitWhenDone 30
+		Checkpoint Yes
+
+		Explanation [$SIGSEGV]
+		{
+			Line "{green}Tip:{reset} After the wave begins, power ups begin to spawn after 35 seconds."
+		}
+
+		WaveSpawn
+		{
+			Name "wave6_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_1
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave6_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_2
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave6_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_3
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_RESIST_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave6_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_4
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 4
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_RESIST_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave6_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_5
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+	
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_KING_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_RESIST_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave6_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_6
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 6
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+						
+			TFBot
+			{
+				Template TF_COND_RUNE_KING_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave6_powerup_respawner_outside"
+			
+			Where powerup_respawner_outside
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 35
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KING
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_RESIST
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_RESIST
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_PRECISION
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			Name "wave6_powerup_respawner_mid"
+			
+			Where powerup_respawner_mid
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 20
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_RESIST
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave6_powerup_respawner_hatch"
+			
+			Where powerup_respawner_hatch
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 10
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_KNOCKOUT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH
+				}
+			}
+		}
+		
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+//WAVE 6 STARTS HERE
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave6_powerup_wave_start"
+			
+			Name "wave6_phase1"
+			
+			Where spawnbot
+			TotalCount 10
+			MaxActive 10
+			SpawnCount 2
+			WaitBeforeStarting 6
+			WaitBetweenSpawns 2
+			TotalCurrency 100
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Heavyweapons_Huo_Long
+			}
+		}
+		
+
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave3_powerup_wave_start"
+			
+			Name "wave6_phase1"
+			
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 50
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Giant_Heavyweapons_Huo_Long
+				Attributes UseBossHealthBar
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_HASTE
+				}
+			}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave6_phase1"
+			
+			Name "wave6_phase2"
+			
+			Where spawnbot
+			TotalCount 15
+			MaxActive 5
+			SpawnCount 1
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 4
+			TotalCurrency 150
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Demoman_Knight
+					Scale 1.2
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_STRENGTH
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave6_phase1"
+			
+			Name "wave6_phase2"
+			
+			Where spawnbot
+			TotalCount 15
+			MaxActive 6
+			SpawnCount 2
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 5
+			TotalCurrency 150
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Soldier_Conch_Warrior
+					Scale 1.2
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_KING
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave6_phase1"
+			
+			Name "wave6_phase2"
+			
+			Where spawnbot
+			TotalCount 15
+			MaxActive 5
+			SpawnCount 1
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 4
+			TotalCurrency 150
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Heavyweapons_Heavyweight_Champ
+					Scale 1.2
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_HASTE
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave6_phase1"
+			
+			Name "wave6_phase2"
+			
+			Where spawnbot
+			TotalCount 2
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 10
+			TotalCurrency 100
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Giant_Demoman_Knight
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_VAMPIRE
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave6_phase2"
+			
+			Name "wave6_boss"
+			
+			FirstSpawnWarningSound "vo/mvm/mght/pyro_mvm_m_laugh_addl04.mp3"
+			DoneWarningSound "\vo\mvm\mght\pyro_mvm_m_autocappedcontrolpoint01.mp3"
+			
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 100
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Boss_Giant_Pyro_Flamethrower
+				Attributes UseBossHealthBar
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_VAMPIRE
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave6_phase2"
+			
+			Name "wave6_support"
+			
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 15
+			TotalCurrency 0
+			
+			Support 1
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Scout_MadMilker
+			}
+		}
+
+	}
+	
+	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+//----------WAVE 7----------
+//Currency: ???
+//STARTING POWER-UPS: Reflect Only
+//RESPAWNING POWER-UPS
+//OUTSIDE: 25/25/25/25 Strength, Vampire, Haste, Agility
+//CASTLE: 50/50 Strength, Resist
+//HATCH: Reflect Only
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaitWhenDone 30
+		Checkpoint Yes
+
+		Explanation [$SIGSEGV]
+		{
+			Line "{green}Tip:{reset} Expecting a tip? Ha! Better luck next time."
+		}
+
+		WaveSpawn
+		{
+			Name "wave7_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_1
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_REFLECT_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave7_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_2
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_REFLECT_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave7_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_3
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_REFLECT_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave7_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_4
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 4
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_REFLECT_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave7_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_5
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_REFLECT_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave7_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_6
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 6
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_REFLECT_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave7_powerup_respawner_outside"
+			
+			Where powerup_respawner_outside
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 35
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_RESIST
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			Name "wave7_powerup_respawner_mid"
+			
+			Where powerup_respawner_mid
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 20
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_RESIST
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave7_powerup_respawner_hatch"
+			
+			Where powerup_respawner_hatch
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 10
+			TotalCurrency 0
+			
+			Support 1
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_REFLECT
+			}
+		}
+		
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+//WAVE 7 STARTS HERE
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave7_powerup_wave_start"
+
+			Name "wave7_phase1"
+			
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 0
+			TotalCurrency 100
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Giant_Demoman_Knight
+				Health 6600
+				ClassIcon demoknight_giant
+				Attributes UseBossHealthBar
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_VAMPIRE
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave7_powerup_wave_start"
+
+			Name "wave7_phase1"
+			
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 4
+			WaitBetweenSpawns 0
+			TotalCurrency 100
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Giant_Heavyweapons_Heavyweight_Champ_Fast
+				ClassIcon heavy_gru
+				Health 10000
+				Attributes UseBossHealthBar
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_AGILITY
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave7_powerup_wave_start"
+
+			Name "wave7_phase1"
+			
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 100
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Boss_Giant_Pyro_Flare
+				ClassIcon pyro_flare
+				Attributes UseBossHealthBar
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_HASTE
+				}
+			}
+		}
+		
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave7_phase1"
+			
+			Name "wave7_phase2"
+			
+			Where spawnbot
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 2
+			WaitBeforeStarting 4
+			WaitBetweenSpawns 2
+			TotalCurrency 400
+			
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Boss_Giant_Demoman_Loose_Cannon
+					ClassIcon demo
+					Attributes UseBossHealthBar
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_STRENGTH
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Boss_Giant_Medic
+					ClassIcon medic
+					Attributes UseBossHealthBar
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_RESIST
+					}
+				}
+			}
+		}
+		
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave7_phase2"
+			
+			Name "wave7_phase3"
+			
+			Where spawnbot
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 4
+			TotalCurrency 400
+			
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Boss_Giant_Sniper_Huntsman
+					ClassIcon sniper_bow
+					Attributes UseBossHealthBar
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_STRENGTH
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Boss_Giant_Pyro_Flamethrower
+					ClassIcon pyro
+					Attributes UseBossHealthBar
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_VAMPIRE
+					}
+				}
+			}
+		}
+		
+	}
+	
+	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+//----------WAVE 8 FINAL----------
+//Currency: ???
+//STARTING POWER-UPS: Precision, Vampire, Haste, Agility, Reflect, Strength, Resist, King
+//RESPAWNING POWER-UPS
+//OUTSIDE: Precision, Vampire, Haste, Agility, Reflect, Strength, Resist, King
+//CASTLE: Precision, Vampire, Haste, Agility, Reflect, Strength, Resist, King
+//HATCH: Precision, Vampire, Haste, Agility, Reflect, Strength, Resist, King
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaitWhenDone 30
+		Checkpoint Yes
+
+		Explanation [$SIGSEGV]
+		{
+			Line "{green}Tip:{reset} Your last tip is... GOOD LUCK!"
+		}
+
+		WaveSpawn
+		{
+			Name "wave8_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_1
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+						
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_PRECISION_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_REFLECT_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_RESIST_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave8_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_2
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_PRECISION_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_REFLECT_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_RESIST_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave8_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_3
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_PRECISION_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_REFLECT_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_RESIST_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave8_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_4
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 4
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_REFLECT_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_RESIST_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave8_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_5
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_REFLECT_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH_STARTER
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_RESIST_STARTER
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave8_powerup_wave_start"
+			
+			FirstSpawnWarningSound "\weapons\teleporter_send.wav"
+			
+			Where powerup_wave_start_6
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 6
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support Limited
+
+			TFBot
+			{
+				Template TF_COND_RUNE_KING_STARTER
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave8_powerup_respawner_outside"
+			
+			Where powerup_respawner_outside
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 10
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_PRECISION
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_REFLECT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_RESIST
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KING
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			Name "wave8_powerup_respawner_mid"
+			
+			Where powerup_respawner_mid
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 10
+			TotalCurrency 0
+			
+			Support 1
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template TF_COND_RUNE_PRECISION
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_VAMPIRE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_HASTE
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_AGILITY
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_REFLECT
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_STRENGTH
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_RESIST
+				}
+				TFBot
+				{
+					Template TF_COND_RUNE_KING
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave8_powerup_respawner_hatch"
+			
+			Where powerup_respawner_hatch
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 35
+			WaitBetweenSpawns 10
+			TotalCurrency 0
+			
+			Support 1
+			
+			TFBot
+			{
+				Template TF_COND_RUNE_REFLECT
+			}
+		}
+		
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+//WAVE 8 FINAL STARTS HERE
+//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//	//
+
+		HalloweenBoss [$SIGSEGV]
+		{
+			BossType "MONOCULUS"
+			Position
+			{
+				X "-1305"
+				Y "585"
+				Z "140"
+			}
+			TeamNum     3
+			Health   300
+			Delay  13.00
+		}
+
+
+		WaveSpawn
+		{
+			FirstSpawnWarningSound "hall2015_fight_merasmus"
+			DoneWarningSound "hall2015_beat_merasmus"
+			
+			Name "wave8_boss_forreal"
+			
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 30
+			WaitBetweenSpawns 3
+			TotalCurrency 1
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Boss_Merasmus
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_KNOCKOUT
+				}
+	//			DamageAppliesCond [$SIGSEGV]
+	//			{
+	//				Index 76	//If player dies, they become a ghost
+	//				Duration 3.0
+	//			}
+				DamageAppliesCond [$SIGSEGV]
+				{
+					Index 30	//Marked for death
+					Duration 3.0
+				}
+			}
+		}
+		
+		WaveSpawn
+		{			
+			Name "wave8_boss"
+			
+			Where spawnbot
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
+			WaitBeforeStarting 30
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			
+			Support 1
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Boss_Merasmus_Clone
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave8_support"
+			
+			Where spawnbot
+			TotalCount 9
+			MaxActive 9
+			SpawnCount 9
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 999
+			TotalCurrency 0
+
+			Support 1
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Skeleton
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave8_support"
+			
+			Where spawnbot
+			TotalCount 6
+			MaxActive 6
+			SpawnCount 2
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 8
+			TotalCurrency 0
+
+			Support 1
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Skeleton
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave8_support"
+			
+			Where spawnbot
+			TotalCount 8
+			MaxActive 8
+			SpawnCount 1
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 3
+			TotalCurrency 0
+
+			Support 1
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Skeleton
+			}
+		}
+				
+		WaveSpawn
+		{
+			Name "wave8_support"
+			
+			Where spawnbot
+			TotalCount 6
+			MaxActive 6
+			SpawnCount 1
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 6
+			TotalCurrency 0
+
+			Support 1
+			
+			TFBot
+			{
+				Template T_TFBot_BB_Skeleton
+			}
+		}
+		
+		WaveSpawn
+		{
+			FirstSpawnWarningSound "Announcer.Helltower_Red_Skeleton_King01"
+			
+			WaitForAllSpawned "wave8_boss_forreal"
+			Name "wave8_support_2"
+			
+			Where spawnbot
+			TotalCount 5
+			MaxActive 5
+			SpawnCount 5
+			WaitBeforeStarting 50
+			WaitBetweenSpawns 45
+			TotalCurrency 0
+			
+			Support 1
+
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_BB_Boss_Skeleton
+					Attributes UseBossHealthBar
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_KING
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Skeleton
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Skeleton
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Skeleton
+				}
+				TFBot
+				{
+					Template T_TFBot_BB_Skeleton
+				}
+			}
+		}
+	}
+	
+}

@@ -1,0 +1,1696 @@
+//Waves of Evil
+//This mission is made for mvm_hillside_v7
+//Made by Monsterphobia (Or Yakibomb on some sites)
+
+WaveSchedule
+{
+
+	StartingCurrency		1000
+	RespawnWaveTime 0
+	CanBotsAttackWhileInSpawnRoom no
+	FixedRespawnWaveTime Yes
+	EventPopfile        Halloween
+
+	Mission // Spy
+	{
+		Objective Spy  
+
+		InitialCooldown 0
+		Where spawnbot
+		BeginAtWave 1
+		RunForThisManyWaves 1
+		CooldownTime 500
+		DesiredCount 7
+
+		TFBot
+		{
+			Class Spy
+			Skill Expert
+		}
+	}
+
+	Mission // Huntsman Snipers
+	{
+		Objective Sniper
+
+		InitialCooldown 300
+		Where spawnbot
+		BeginAtWave 1
+		RunForThisManyWaves 1
+		CooldownTime 180
+		DesiredCount 2
+
+			TFBot
+			{
+				Class Sniper
+				Name "Razorback Bowman"
+				Skill Expert
+				MaxVisionRange 2500
+				ClassIcon sniper_bow
+				Item "The Smissmas Caribou"
+				Item "The Huntsman"
+				Item "The Razorback"
+				Item "Upgradeable TF_WEAPON_CLUB"
+				Attributes DisableDodge
+				Attributes HoldFireUntilFullReload
+				ItemAttributes
+				{
+					ItemName "The Huntsman"
+					"reload time decreased" 0.6
+					"fire rate bonus" 0.6
+					"damage penalty" 0.5
+				}
+				ItemAttributes
+				{
+					ItemName "Upgradeable TF_WEAPON_CLUB"
+					"critboost on kill" 3
+				}
+			}
+	}
+	//WAVE 666///////////////////////////////////////////////////////////////////////////////////////////////////////
+	//Notes on WaveSpawn
+	//1: Volcano Fragments + Bonk/Fan O' War + Steel Gaunlets
+	//2: 6 Giant Heavyweight Champs + Medic (xbow + melee) support.
+	//3: Oops, I forgot to make this!
+	//4: Tank + GRUs. Spy support.
+	//5: More GRU (lots more) + Demoknights + Fan O' War. Huntsman support. 
+	//6: 5 tanks + Spies
+	//Grace Period: 30 seconds
+	//7: Crit Cleavers + Giant Demoknight Support (1 every time it dies, stops at 4).
+	//8: 4 squads of Giant GRU + Giant Rapid Fire Crusader's Crossbow
+	//9: Crit Buff Banners + Volcano/Axtinguisher Squads + Fan O' War.
+	//10: Fast Backscratchers
+	//11: Lots of crit Huntsman.
+	//12: 10 Valve Samurai Demos + Samurai Concherors
+	//13: 10 squads of rapid fire Crusader's Crossbow + Warrior's Spirit 
+	//Oh and heavy mittens are placed in certain spots in the wave just to be evil.
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaitWhenDone 65
+		Checkpoint Yes
+		
+
+
+		WaveSpawn
+		{
+			Name "wave1phase1"
+			
+			Where spawnbot
+			TotalCount 30
+			MaxActive 10
+			SpawnCount 1
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 0
+			TotalCurrency 150
+
+			TFBot
+			{
+				Class Scout
+				Name "Bonk! Scout"
+				ClassIcon scout_bonk
+				Skill Easy
+				MaxVisionRange 400
+
+				Item "Bonk! Atomic Punch"
+				Item "The Fan O'War"
+				Item "Bonk Helm"
+				Attributes AlwaysCrit
+			}
+		}
+
+
+		WaveSpawn
+		{
+			Name "wave1phase2"
+			
+			Where spawnbot
+			TotalCount 40
+			MaxActive 6
+			SpawnCount 1
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 0
+			TotalCurrency 200
+
+			TFBot
+			{
+				Class Pyro
+				Name "Volcano Fragment Pyro"
+				ClassIcon pyro
+				Skill Hard
+				MaxVisionRange 400
+
+				Attributes AlwaysFireWeapon
+				Item "Sharpened Volcano Fragment"
+			}
+		}
+
+
+		WaveSpawn
+		{
+			Name "wave1phase3"
+			
+			Where spawnbot
+			TotalCount 20
+			MaxActive 6
+			SpawnCount 1
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 4
+			TotalCurrency 200
+
+			TFBot
+			{
+				Class Heavyweapons
+				Name "Steel Gauntlet"
+				Skill Hard
+				ClassIcon heavy_steelfist
+				Health 900
+				Scale 1.5
+				WeaponRestrictions MeleeOnly
+				Item "Fists of Steel"
+ 				CharacterAttributes
+				{
+					"damage force reduction" 0.7
+					"airblast vulnerability multiplier" 0.5
+				}
+			}
+		}
+
+
+		WaveSpawn
+		{			
+			Name "heavymittens1"
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 120
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+
+			TFBot
+			{
+				Class Heavyweapons
+				Name "Heavy Mittens"
+				Skill Easy
+				MaxVisionRange 400
+
+				ClassIcon heavy_mittens
+				WeaponRestrictions MeleeOnly
+				Health 300
+				Attributes AlwaysCrit
+				Item "The All-Father"
+				Item "Point and Shoot"
+				Item "The Holiday Punch"
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave1phase3"
+			
+			Name "wave2phase1"
+
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 1
+			WaitBeforeStarting 15
+			WaitBetweenSpawns 15
+			TotalCurrency 60
+
+			TFBot
+			{		
+				Class Heavyweapons
+				Name "Giant Heavyweight Champ"
+				ClassIcon heavy_champ_giant
+				Skill Easy
+				Health 5000
+				MaxVisionRange 400
+
+				Attributes MiniBoss
+				Item "The Killing Gloves of Boxing"
+				WeaponRestrictions MeleeOnly
+				ItemAttributes
+				{
+					ItemName "The Killing Gloves of Boxing"
+					"melee range multiplier" 1.2
+					"damage bonus" 1.4
+					"fire rate bonus" 1.2
+				}
+				CharacterAttributes
+				{
+					"override footstep sound set" 2
+					"damage force reduction" 0.5
+					"move speed penalty" 0.4
+				}
+			}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave1phase3"
+			
+			Name "wave2phase2"
+
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 1
+			WaitBeforeStarting 30
+			WaitBetweenSpawns 30
+			TotalCurrency 60
+
+			TFBot
+			{		
+				Class Heavyweapons
+				Name "Giant Sandvich Heavy"
+				ClassIcon heavy_champ_giant
+				Skill Easy
+				Health 5000
+				MaxVisionRange 400
+
+				Attributes MiniBoss
+				Item "The Killing Gloves of Boxing"
+				WeaponRestrictions MeleeOnly
+				ItemAttributes
+				{
+					ItemName "The Killing Gloves of Boxing"
+					"melee range multiplier" 1.2
+					"damage bonus" 1.4
+					"fire rate bonus" 1.2
+				}
+				CharacterAttributes
+				{
+					"override footstep sound set" 2
+					"damage force reduction" 0.5
+					"move speed penalty" 0.4
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave1phase3"
+
+			Name "wave2phase3"
+			
+			Where spawnbot
+			TotalCount 15
+			MaxActive 5
+			SpawnCount 5
+			WaitBeforeStarting 15
+			WaitBetweenSpawns 15
+			TotalCurrency 90
+
+
+			Squad
+			{
+				FormationSize 250
+
+				TFBot
+				{
+					Class Medic
+					Name "Crusader's Crossbow Medic"
+					ClassIcon medic
+					MaxVisionRange 2500
+					Skill Expert
+					Item "The Crusader's Crossbow"
+					Item "Berliner's Bucket Helm"
+					Item "The Amputator"
+					WeaponRestrictions PrimaryOnly
+					ItemAttributes
+					{
+						ItemName "The Crusader's Crossbow"
+					}
+				}
+
+
+				TFBot
+				{
+					Class Medic
+					Name "Crusader's Crossbow Medic"
+					ClassIcon medic
+					MaxVisionRange 2500
+					Skill Expert
+					Item "The Crusader's Crossbow"
+					Item "Berliner's Bucket Helm"
+					Item "The Amputator"
+					WeaponRestrictions PrimaryOnly
+					ItemAttributes
+					{
+						ItemName "The Crusader's Crossbow"
+					}
+				}
+
+
+				TFBot
+				{
+					Class Medic
+					Name "Crusader's Crossbow Medic"
+					ClassIcon medic
+					MaxVisionRange 2500
+					Skill Expert
+					Item "The Crusader's Crossbow"
+					Item "Berliner's Bucket Helm"
+					Item "The Amputator"
+					WeaponRestrictions PrimaryOnly
+					ItemAttributes
+					{
+						ItemName "The Crusader's Crossbow"
+					}
+				}
+
+
+				TFBot
+				{
+					Class Medic
+					Name "Crusader's Crossbow Medic"
+					ClassIcon medic
+					MaxVisionRange 2500
+					Skill Expert
+					Item "The Crusader's Crossbow"
+					Item "Berliner's Bucket Helm"
+					Item "The Amputator"
+					WeaponRestrictions PrimaryOnly
+					ItemAttributes
+					{
+						ItemName "The Crusader's Crossbow"
+					}
+				}
+
+
+				TFBot
+				{
+					Class Medic
+					Name "Crusader's Crossbow Medic"
+					ClassIcon medic
+					MaxVisionRange 2500
+					Skill Expert
+					Item "The Crusader's Crossbow"
+					Item "Berliner's Bucket Helm"
+					Item "The Amputator"
+					WeaponRestrictions PrimaryOnly
+					ItemAttributes
+					{
+						ItemName "The Crusader's Crossbow"
+					}
+				}
+			}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave1phase3"
+
+			Name "wave2phase4"
+			
+			Where spawnbot
+			TotalCount 16
+			MaxActive 8
+			SpawnCount 2
+			WaitBeforeStarting 30
+			WaitBetweenSpawns 2
+			TotalCurrency 80
+
+			TFBot
+			{
+				Class Medic
+				Name "Amputator Medic"
+				ClassIcon medic
+				MaxVisionRange 400
+				Skill Expert
+				Item "Berliner's Bucket Helm"
+				Item "The Amputator"
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave2phase1"
+
+			Name "wave4phase1"
+			TotalCount 1
+			WaitBeforeStarting 1
+			TotalCurrency 300
+			
+			FirstSpawnOutput                                                                                                                                                            
+			
+			{
+				Target boss_spawn_relay                                            
+				Action Trigger                         
+			}
+
+			Tank
+			{
+				Health 13000
+				Speed 75
+				Name "Tank"
+				StartingPathTrackNode "boss_path_a1"
+
+				OnKilledOutput                                  
+				{
+					Target boss_dead_relay
+					Action Trigger                         
+				}
+				
+				OnBombDroppedOutput                             
+				{
+					Target boss_deploy_relay 
+					Action Trigger                         
+				}
+
+			}			
+		}
+
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave4phase1"
+
+			Name "wave4phase2"
+			
+			Where spawnbot
+			TotalCount 18
+			MaxActive 18
+			SpawnCount 3
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 4
+			TotalCurrency 120
+
+			TFBot
+			{
+				Class Heavyweapons
+				Name "Heavyweight Champ"
+				Skill Easy
+				MaxVisionRange 400
+
+				ClassIcon heavy_gru
+				WeaponRestrictions MeleeOnly
+				Item "Gloves of Running Urgently"
+				Attributes AlwaysCrit
+			}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave4phase1"
+			
+			Name "spy2"
+			Where spawnbot
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 1
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+
+			TFBot
+			{
+				Class Spy
+				Skill Expert
+			}
+		}
+
+
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave4phase1"
+
+			Name "wave5phase1"
+			TotalCount 1
+			WaitBeforeStarting 12
+			TotalCurrency 400
+			
+			FirstSpawnOutput                                                                                                                                                            
+			
+			{
+				Target boss_spawn_relay                                            
+				Action Trigger                         
+			}
+
+			Tank
+			{
+				Health 15000
+				Speed 75
+				Name "Tank"
+				StartingPathTrackNode "boss_path_a1"
+
+				OnKilledOutput                                  
+				{
+					Target boss_dead_relay
+					Action Trigger                         
+				}
+				
+				OnBombDroppedOutput                             
+				{
+					Target boss_deploy_relay 
+					Action Trigger                         
+				}
+
+			}			
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave4phase2"
+
+			Name "wave5phase2"
+			
+			Where spawnbot
+			TotalCount 54
+			MaxActive 9
+			SpawnCount 3
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 6
+			TotalCurrency 120
+
+			TFBot
+			{
+				Class Heavyweapons
+				Name "Heavyweight Champ"
+				Skill Easy
+				MaxVisionRange 400
+
+				ClassIcon heavy_gru
+				WeaponRestrictions MeleeOnly
+				Item "Gloves of Running Urgently"
+				Attributes AlwaysCrit
+			}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave2phase2"
+
+			Name "wave5phase2"
+			
+			Where spawnbot
+			TotalCount 50
+			MaxActive 8
+			SpawnCount 4
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 4
+			TotalCurrency 150
+
+			TFBot
+			{
+				Class Demoman
+				Name "Demoknight"
+				ClassIcon demoknight
+				Skill Expert
+				MaxVisionRange 350
+
+				Item "The Chargin' Targe"
+				Item "The Eyelander"
+				WeaponRestrictions MeleeOnly
+				ItemAttributes
+				{
+					ItemName "The Eyelander"
+					"critboost on kill" 3
+				}
+			}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave4phase2"
+
+			Name "wave5phase2"
+			
+			Where spawnbot
+			TotalCount 40
+			MaxActive 5
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 1
+			TotalCurrency 60
+
+			TFBot
+			{
+				Class Scout
+				Name "Fan O' War Scout"
+				ClassIcon scout
+				Skill Easy
+				MaxVisionRange 400
+
+				Item "The Fan O'War"
+				Attributes AlwaysCrit
+			}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave4phase2"
+			
+			Name "wave5phase2"
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
+			WaitBeforeStarting 30
+			WaitBetweenSpawns 0
+			TotalCurrency 15
+
+			TFBot
+			{
+				Class Sniper
+				Name "Bowman"
+				Skill Expert
+				MaxVisionRange 2500
+				ClassIcon sniper_bow
+				Item "The Huntsman"
+				Item "Upgradeable TF_WEAPON_CLUB"
+				Attributes HoldFireUntilFullReload
+				Attributes AlwaysCrit
+				ItemAttributes
+				{
+					ItemName "The Huntsman"
+					"reload time decreased" 0.6
+					"damage penalty" 0.5
+				}
+				ItemAttributes
+				{
+					ItemName "Upgradeable TF_WEAPON_CLUB"
+					"critboost on kill" 3
+				}
+			}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave5phase2"
+
+			Name "wave6phase1"
+			TotalCount 1
+			WaitBeforeStarting 5
+			TotalCurrency 250
+			
+			FirstSpawnOutput                                                                                                                                                            
+			
+			{
+				Target boss_spawn_relay                                            
+				Action Trigger                         
+			}
+
+			Tank
+			{
+				Health 12000
+				Speed 75
+				Name "Tank"
+				StartingPathTrackNode "boss_path_a1"
+
+				OnKilledOutput                                  
+				{
+					Target boss_dead_relay
+					Action Trigger                         
+				}
+				
+				OnBombDroppedOutput                             
+				{
+					Target boss_deploy_relay 
+					Action Trigger                         
+				}
+
+			}			
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave5phase3"
+			
+			Name "spy3"
+			Where spawnbot
+			TotalCount 47
+			MaxActive 16
+			SpawnCount 8
+			WaitBeforeStarting 15
+			WaitBetweenSpawns 25
+			TotalCurrency 0
+
+			TFBot
+			{
+				Class Spy
+				Skill Expert
+			}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave5phase2"
+
+			Name "wave6phase2"
+			TotalCount 1
+			WaitBeforeStarting 22
+			TotalCurrency 200
+			
+			FirstSpawnOutput                                                                                                                                                            
+			
+			{
+				Target boss_spawn_relay                                            
+				Action Trigger                         
+			}
+
+			Tank
+			{
+				Health 10000
+				Speed 75
+				Name "Tank"
+				StartingPathTrackNode "boss_path_a1"
+
+				OnKilledOutput                                  
+				{
+					Target boss_dead_relay
+					Action Trigger                         
+				}
+				
+				OnBombDroppedOutput                             
+				{
+					Target boss_deploy_relay 
+					Action Trigger                         
+				}
+
+			}			
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave6phase2"
+			
+			Name "heavymittens2"
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 40
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+
+			TFBot
+			{
+				Class Heavyweapons
+				Name "Heavy Mittens"
+				Skill Easy
+				MaxVisionRange 400
+
+				ClassIcon heavy_mittens
+				WeaponRestrictions MeleeOnly
+				Health 300
+				Attributes AlwaysCrit
+				Item "The All-Father"
+				Item "Point and Shoot"
+				Item "The Holiday Punch"
+			}
+		}
+
+
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave5phase1"
+
+			Name "wave6phase3"
+			TotalCount 1
+			WaitBeforeStarting 37
+			TotalCurrency 600
+			
+			FirstSpawnOutput                                                                                                                                                            
+			
+			{
+				Target boss_spawn_relay                                            
+				Action Trigger                         
+			}
+
+			Tank
+			{
+				Health 16000
+				Speed 60
+				Name "Tank"
+				StartingPathTrackNode "boss_path_a1"
+
+				OnKilledOutput                                  
+				{
+					Target boss_dead_relay
+					Action Trigger                         
+				}
+				
+				OnBombDroppedOutput                             
+				{
+					Target boss_deploy_relay 
+					Action Trigger                         
+				}
+
+			}			
+		}
+
+
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave5phase1"
+
+			Name "wave6phase4"
+			TotalCount 1
+			WaitBeforeStarting 42
+			TotalCurrency 1000
+			
+			FirstSpawnOutput                                                                                                                                                            
+			
+			{
+				Target boss_spawn_relay                                            
+				Action Trigger                         
+			}
+
+			Tank
+			{
+				Health 16000
+				Speed 60
+				Name "Tank"
+				StartingPathTrackNode "boss_path_a1"
+
+				OnKilledOutput                                  
+				{
+					Target boss_dead_relay
+					Action Trigger                         
+				}
+				
+				OnBombDroppedOutput                             
+				{
+					Target boss_deploy_relay 
+					Action Trigger                         
+				}
+
+			}			
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave6phase4"
+			
+			Name "wave7phase1"
+			Where spawnbot
+			TotalCount 12
+			MaxActive 12
+			SpawnCount 12
+			WaitBeforeStarting 30
+			WaitBetweenSpawns 0
+			TotalCurrency 120
+
+			TFBot
+			{
+				Class Scout
+				ClassIcon scout
+				Name "Cleaver"
+				Skill Expert
+				MaxVisionRange 750
+				WeaponRestrictions SecondaryOnly
+				Attributes AlwaysFireWeapon
+				Attributes DisableDodge
+				Attributes AlwaysCrit
+				Item "The Flying Guillotine"
+				ItemAttributes
+				{
+					ItemName "The Flying Guillotine"
+					"effect bar recharge rate increased" 0.4
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave6phase4"
+			
+			Name "wave7phase2"
+			Where spawnbot
+			TotalCount 4
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 30
+			WaitBetweenSpawns 5
+			TotalCurrency 300
+
+			TFBot
+			{
+				Class Demoman
+				ClassIcon demoknight_giant
+				Name "Giant Demoknight"
+				Skill Expert
+				Health 3300
+				Item "The Chargin' Targe"
+				Item "The Eyelander"
+				Item "Ali Baba's Wee Booties"
+				WeaponRestrictions MeleeOnly
+				Attributes MiniBoss			
+				CharacterAttributes 
+				{	
+					"move speed bonus" 0.4
+					"critboost on kill" 3
+					"damage force reduction" 0.5
+					"airblast vulnerability multiplier" 0.5
+					"override footstep sound set" 4
+				}
+			}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave7phase1"
+			
+			Name "wave7phase3"
+			Where spawnbot
+			TotalCount 33
+			MaxActive 16
+			SpawnCount 4
+			WaitBeforeStarting 4
+			WaitBetweenSpawns 6
+			TotalCurrency 330
+
+			TFBot
+			{
+				Class Scout
+				ClassIcon scout
+				Name "Cleaver"
+				Skill Expert
+				MaxVisionRange 750
+				WeaponRestrictions SecondaryOnly
+				Attributes AlwaysFireWeapon
+				Attributes DisableDodge
+				Attributes AlwaysCrit
+				Item "The Flying Guillotine"
+				ItemAttributes
+				{
+					ItemName "The Flying Guillotine"
+					"effect bar recharge rate increased" 0.4
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave7phase3"
+
+			Name "wave8phase1"
+			
+			Where spawnbot
+			TotalCount 8
+			MaxActive 8
+			SpawnCount 2
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 30
+			TotalCurrency 400
+
+			Squad
+			{
+				TFBot
+				{
+					Class Heavyweapons
+					Name "Giant Heavyweight Champ"
+					Skill Easy
+					MaxVisionRange 400
+
+					Health 5000
+					ClassIcon heavy_gru_giant
+					Scale 1.75
+					Attributes MiniBoss
+					Attributes AlwaysCrit
+					WeaponRestrictions MeleeOnly
+					Item "Gloves of Running Urgently"
+					ItemAttributes
+					{
+						ItemName "Gloves of Running Urgently"
+						"damage bonus" 1.05
+						"fire rate bonus" 1.2
+					}
+					CharacterAttributes
+					{
+						"override footstep sound set" 2
+						"damage force reduction" 0.5
+						"move speed penalty" 0.4
+					}
+				}
+
+				TFBot
+				{
+					Class Medic
+					Name "Giant Crusader's Crossbow Medic"
+					ClassIcon medic_giant
+					Scale 1.75
+					Health 4500
+					MaxVisionRange 400
+					Skill Expert
+					Item "The Crusader's Crossbow"
+					Item "Berliner's Bucket Helm"
+					Item "The Amputator"
+					Attributes MiniBoss
+					WeaponRestrictions PrimaryOnly
+					ItemAttributes
+					{
+						ItemName "The Crusader's Crossbow"
+						"reload time decreased" 0.01
+						"fire rate bonus" 0.2
+						"clip size bonus" 300
+						"damage penalty" 0.1
+					}
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction" 0.6
+						"airblast vulnerability multiplier" 0.6
+						"health regen"	40
+					}
+				}
+			}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave8phase1"
+			
+			Name "wave9phase1"
+			Where spawnbot
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 4
+			WaitBeforeStarting 12
+			WaitBetweenSpawns 0
+			TotalCurrency 40
+
+			TFBot
+			{
+				Class Soldier
+				Name "Extended Buff Soldier"
+				ClassIcon soldier
+				Skill Hard
+				MaxVisionRange 400
+
+				Attributes SpawnWithFullCharge
+				Item "The Buff Banner"
+				Attributes AlwaysCrit
+				ItemAttributes
+				{
+					ItemName "The Buff Banner"
+					"increase buff duration HIDDEN" 9
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave8phase1"
+			
+			Name "heavymittens3"
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 30
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+
+			TFBot
+			{
+				Class Heavyweapons
+				Name "Heavy Mittens"
+				Skill Easy
+				MaxVisionRange 400
+
+				ClassIcon heavy_mittens
+				WeaponRestrictions MeleeOnly
+				Health 300
+				Attributes AlwaysCrit
+				Item "The All-Father"
+				Item "Point and Shoot"
+				Item "The Holiday Punch"
+			}
+		}
+
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave9phase1"
+			
+			Name "wave9phase2"
+			Where spawnbot
+			TotalCount 21
+			MaxActive 4
+			SpawnCount 1
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 1
+			TotalCurrency 210
+
+			TFBot
+			{
+				Class Soldier
+				Name "Extended Buff Soldier"
+				ClassIcon soldier
+				Skill Hard
+				MaxVisionRange 400
+
+				Attributes SpawnWithFullCharge
+				Attributes AlwaysCrit
+				Item "The Buff Banner"
+				ItemAttributes
+				{
+					ItemName "The Buff Banner"
+					"increase buff duration HIDDEN" 9
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave8phase1"
+
+			Name "wave9phase2"
+			
+			Where spawnbot
+			TotalCount 52
+			MaxActive 8
+			SpawnCount 2
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 3
+			TotalCurrency 520
+
+			Squad
+			{
+				TFBot
+				{
+					Class Pyro
+					Name "Axtinguisher Pyro"
+					ClassIcon pyro
+					Skill Hard
+					MaxVisionRange 400
+
+					Item "The Axtinguisher"
+					ItemAttributes
+					{
+						ItemName "The Axtinguisher"
+						"damage bonus" 3
+						"minicrits become crits" 1
+					}
+				}
+				TFBot
+				{
+					Class Pyro
+					Name "Volcano Fragment Pyro"
+					ClassIcon pyro
+					Skill Hard
+					MaxVisionRange 400
+
+					Item "Sharpened Volcano Fragment"
+				}
+			}
+		}
+
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave8phase1"
+
+			Name "wave9phase2"
+			
+			Where spawnbot
+			TotalCount 54
+			MaxActive 10
+			SpawnCount 2
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 2
+			TotalCurrency 250
+
+			TFBot
+			{
+				Class Scout
+				Name "Wrap Assassin"
+				ClassIcon scout
+				Skill Expert
+				MaxVisionRange 750
+				Item "The Wrap Assassin"
+				Attributes AlwaysCrit
+				ItemAttributes
+				{
+					ItemName "The Wrap Assassin"
+					"effect bar recharge rate increased" 0.4
+				}
+			}
+		}
+
+
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave9phase2"
+
+			Name "wave10phase1"
+			
+			Where spawnbot
+			TotalCount 24
+			MaxActive 12
+			SpawnCount 3
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 10
+			TotalCurrency 240
+
+			TFBot
+			{
+				Class Pyro
+				Name "Back Scratcher"
+				ClassIcon pyro
+				Skill Expert
+				Attributes AlwaysCrit
+				Item "The Back Scratcher"
+				CharacterAttributes
+				{
+					"move speed bonus" 1.5
+				}
+			}
+		}
+
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave10phase1"
+
+			Name "wave11phase1"
+			
+			Where spawnbot
+			TotalCount 10
+			MaxActive 10
+			SpawnCount 1
+			WaitBeforeStarting 12
+			WaitBetweenSpawns 15
+			TotalCurrency 400
+
+			TFBot
+			{
+				Class Demoman
+				Name "Samurai Demo"
+				ClassIcon demoknight_samurai
+				Skill Expert
+				Health 650
+				Scale 1.3
+				WeaponRestrictions MeleeOnly
+				Attributes AlwaysCrit
+				Attributes AutoJump
+					AutoJumpMin 10
+					AutoJumpMax 10
+				Item "Demo Kabuto"
+				Item "The Half-Zatoichi"
+				Item "The Splendid Screen"
+				ItemAttributes
+				{
+					ItemName "The Splendid Screen"
+					"Attack not cancel charge" 1
+				}
+				ItemAttributes
+				{
+				ItemName "The Half-Zatoichi"
+					"damage bonus" 1.5
+					"charge time increased" 2
+					"charge recharge rate increased" 7
+				}
+				CharacterAttributes
+				{
+					"increased jump height" 2.3
+					"bot custom jump particle" 1
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave10phase1"
+
+			Name "wave11phase2"
+			
+			Where spawnbot
+			TotalCount 30
+			MaxActive 12
+			SpawnCount 2
+			WaitBeforeStarting 12
+			WaitBetweenSpawns 4
+			TotalCurrency 300
+
+			TFBot
+			{
+				Class Soldier
+				Name "Samurai Soldier"
+				ClassIcon demoknight_samurai
+				Skill Easy
+				Health 300
+				Scale 1.3
+				WeaponRestrictions MeleeOnly
+				Attributes AlwaysCrit
+				Attributes SpawnWithFullCharge
+				Attributes AutoJump
+					AutoJumpMin 10
+					AutoJumpMax 10
+				Item "The Concheror"
+				Item "Soldier Samurai Hat"
+				Item "The Half-Zatoichi"
+				ItemAttributes
+				{
+					ItemName "The Concheror"
+					"increase buff duration HIDDEN" 9
+				}
+				ItemAttributes
+				{
+					ItemName "The Half-Zatoichi"
+					"damage bonus" 1.5
+				}
+				CharacterAttributes
+				{
+					"increased jump height" 2.3
+					"bot custom jump particle" 1
+				}
+			}
+		}
+
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave11phase1"
+			
+			Name "wave12phase1"
+			Where spawnbot
+			TotalCount 32
+			MaxActive 18
+			SpawnCount 18
+			WaitBeforeStarting 9
+			WaitBetweenSpawns 0
+			TotalCurrency 320
+
+			Squad
+			{
+				TFBot
+				{
+					Class Sniper
+					Name "Bowman"
+					Skill Easy
+					MaxVisionRange 2500
+					ClassIcon sniper_bow
+					Item "The Huntsman"
+					Item "Upgradeable TF_WEAPON_CLUB"
+					Attributes DisableDodge
+					Attributes HoldFireUntilFullReload
+					Attributes AlwaysCrit
+					ItemAttributes
+					{
+						ItemName "The Huntsman"
+						"reload time decreased" 0.6
+						"damage penalty" 0.5
+					}
+					ItemAttributes
+					{
+						ItemName "Upgradeable TF_WEAPON_CLUB"
+						"critboost on kill" 3
+					}
+				}
+
+				TFBot
+				{
+					Class Sniper
+					Name "Bowman"
+					Skill Easy
+					MaxVisionRange 2500
+					ClassIcon sniper_bow
+					Item "The Huntsman"
+					Item "Upgradeable TF_WEAPON_CLUB"
+					Attributes DisableDodge
+					Attributes HoldFireUntilFullReload
+					Attributes AlwaysCrit
+					ItemAttributes
+					{
+						ItemName "The Huntsman"
+						"reload time decreased" 0.6
+						"damage penalty" 0.5
+					}
+					ItemAttributes
+					{
+						ItemName "Upgradeable TF_WEAPON_CLUB"
+						"critboost on kill" 3
+					}
+				}
+
+				TFBot
+				{
+					Class Sniper
+					Name "Bowman"
+					Skill Easy
+					MaxVisionRange 2500
+					ClassIcon sniper_bow
+					Item "The Huntsman"
+					Item "Upgradeable TF_WEAPON_CLUB"
+					Attributes DisableDodge
+					Attributes HoldFireUntilFullReload
+					Attributes AlwaysCrit
+					ItemAttributes
+					{
+						ItemName "The Huntsman"
+						"reload time decreased" 0.6
+						"damage penalty" 0.5
+					}
+					ItemAttributes
+					{
+						ItemName "Upgradeable TF_WEAPON_CLUB"
+						"critboost on kill" 3
+					}
+				}
+
+				TFBot
+				{
+					Class Sniper
+					Name "Bowman"
+					Skill Easy
+					MaxVisionRange 2500
+					ClassIcon sniper_bow
+					Item "The Huntsman"
+					Item "Upgradeable TF_WEAPON_CLUB"
+					Attributes DisableDodge
+					Attributes HoldFireUntilFullReload
+					Attributes AlwaysCrit
+					ItemAttributes
+					{
+						ItemName "The Huntsman"
+						"reload time decreased" 0.6
+						"damage penalty" 0.5
+					}
+					ItemAttributes
+					{
+						ItemName "Upgradeable TF_WEAPON_CLUB"
+						"critboost on kill" 3
+					}
+				}
+
+				TFBot
+				{
+					Class Sniper
+					Name "Bowman"
+					Skill Easy
+					MaxVisionRange 2500
+					ClassIcon sniper_bow
+					Item "The Huntsman"
+					Item "Upgradeable TF_WEAPON_CLUB"
+					Attributes DisableDodge
+					Attributes HoldFireUntilFullReload
+					Attributes AlwaysCrit
+					ItemAttributes
+					{
+						ItemName "The Huntsman"
+						"reload time decreased" 0.6
+						"damage penalty" 0.5
+					}
+					ItemAttributes
+					{
+						ItemName "Upgradeable TF_WEAPON_CLUB"
+						"critboost on kill" 3
+					}
+				}
+
+				TFBot
+				{
+					Class Sniper
+					Name "Bowman"
+					Skill Easy
+					MaxVisionRange 2500
+					ClassIcon sniper_bow
+					Item "The Huntsman"
+					Item "Upgradeable TF_WEAPON_CLUB"
+					Attributes DisableDodge
+					Attributes HoldFireUntilFullReload
+					Attributes AlwaysCrit
+					ItemAttributes
+					{
+						ItemName "The Huntsman"
+						"reload time decreased" 0.6
+						"damage penalty" 0.5
+					}
+					ItemAttributes
+					{
+						ItemName "Upgradeable TF_WEAPON_CLUB"
+						"critboost on kill" 3
+					}
+				}
+			}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave12phase1"
+			
+			Name "wave13phase1"
+
+			Where spawnbot
+			TotalCount 20
+			MaxActive 20
+			SpawnCount 4
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 4
+			TotalCurrency 200
+
+			Squad
+			{
+				TFBot
+				{		
+					Class Heavyweapons
+					Name "Heavyweight Brawler"
+					ClassIcon heavy
+					Health 280
+					Skill Expert
+					MaxVisionRange 400
+
+					Item "Warrior's Spirit"
+					Item "Big Chief"
+					WeaponRestrictions MeleeOnly
+				}
+
+				TFBot
+				{
+					Class Medic
+					Name "Crusader's Crossbow Medic"
+					ClassIcon medic
+					MaxVisionRange 400
+					Skill Expert
+					Item "The Crusader's Crossbow"
+					Item "Berliner's Bucket Helm"
+					Item "The Amputator"
+					WeaponRestrictions PrimaryOnly
+					ItemAttributes
+					{
+						ItemName "The Crusader's Crossbow"
+						"reload time decreased" 0.01
+						"fire rate bonus" 0.2
+						"clip size bonus" 300
+						"damage penalty" 0.1
+					}
+				}
+			}
+		}
+
+		WaveSpawn // :) One last laugh.
+		{
+			WaitForAllDead "wave13phase1"
+
+			Name "heavymittens4"
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 22
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+
+			TFBot
+			{
+				Class Heavyweapons
+				Name "Heavy Mittens"
+				Skill Easy
+				MaxVisionRange 400
+
+				ClassIcon heavy_mittens
+				WeaponRestrictions MeleeOnly
+				Health 300
+				Attributes AlwaysCrit
+				Item "The All-Father"
+				Item "Point and Shoot"
+				Item "The Holiday Punch"
+				CharacterAttributes
+				{
+					"move speed bonus" 2.5
+				}
+			}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave13phase1"
+
+			Name "wave14phase1"
+			TotalCount 1
+			WaitBeforeStarting 0
+			TotalCurrency 1000
+			
+			FirstSpawnOutput                                                                                                                                                            
+			
+			{
+				Target boss_spawn_relay                                            
+				Action Trigger                         
+			}
+
+			Tank
+			{
+				Health 20000
+				Speed 75
+				Name "Tank"
+				StartingPathTrackNode "boss_path_a1"
+
+				OnKilledOutput                                  
+				{
+					Target boss_dead_relay
+					Action Trigger                         
+				}
+				
+				OnBombDroppedOutput                             
+				{
+					Target boss_deploy_relay 
+					Action Trigger                         
+				}
+
+			}			
+		}
+
+
+
+	}
+}

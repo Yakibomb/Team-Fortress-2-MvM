@@ -1,0 +1,1527 @@
+#base robot_medieval_yakibomb.pop
+
+//Target Practice V8
+//This mission is made for mvm_hillside_v7
+//Made by Yakibomb
+
+//V8 (3/8/18)
+//Custom Upgrades should now work
+
+//V7 (2/8/18)
+//Removed Dropweapon 1 because it doesn't work (prevented bosses from spawning)
+//Tank: Resized to 0.5 and speed slowed so it doesn't get destroyed by the gate...
+
+//V6
+//Added Neon Annihilator + Hot Hand weapons because I forgot.
+
+//V5 Changelog (1/22/18)
+//Last update worked!
+//Added three King runes for golems (dunno if this works!)
+//Starting credits raised to 500
+
+//V4 Changelog (1/21/18)
+//Checking to see if "MedievalMode 0" will allow new weapons to be used.
+
+//V3 Changelog (1/19/18)
+//SIGSEGV EXCLUSIVE FEATURE: Enables weapons Rescue Ranger, Loose Cannon, all Flare Guns, Thermal Thruster, and Gas Passer.
+//SIGSEGV EXCLUSIVE FEATURE: Custom Medieval UPGRADES!!!
+//SIGSEGV EXCLUSIVE FEATURE: Credit bonuses reduced to 50 for A rank (from 100)
+//Changed all credits earned for above change
+//Changed name of "scout" to "Scout"
+//Removed Generic Snipers from using bow
+
+
+//V2 Changelog (11/11/15)
+//Added notes to this file for each wave
+//Increased health on Golems on wave 1 from 1000 to 3000
+//Removed ability to backstab the crossbow off the giant deflector medic boss
+//Cleaned up wave 3 a bit: Added Huntsman Snipers, changed 10 individual Scouts to just jumpers and sandman
+//Removed squad on wave 4 boss (final boss)
+//Multiplied miniboss by 4 on wave 4
+//Increased health on final boss from 3000 to 8000. Final boss now healths 1000 on hit, and heals all health on kill. 
+
+WaveSchedule
+{
+
+	// SIGSEGV EXCLUSIVE COMMANDS
+	CustomUpgradesFile "mvm_customupgrades_hillside_v7_yakibomb.txt" [$SIGSEGV]
+	NoReanimators 1
+	MedievalMode 0
+	BonusRatioFull 1.00
+	BonusRatioHalf 0.9
+
+		ItemWhitelist [$SIGSEGV]
+		{
+			Allowed		"saxxy"
+			Allowed		"tf_weapon_lunchbox_drink"
+			Allowed		"tf_weapon_jar_milk"
+			Allowed		"tf_weapon_cleaver"
+			Allowed		"tf_weapon_bat"
+			Allowed		"tf_weapon_bat_wood"
+			Allowed		"tf_weapon_bat_fish"
+			Allowed		"tf_weapon_bat_giftwrap"
+			Allowed		"tf_weapon_buff_item"
+			Allowed		"tf_weapon_parachute"
+			Allowed		"tf_weapon_shovel"
+			Allowed		"tf_weapon_katana"
+			Allowed		"tf_weapon_fireaxe"
+			Allowed		"tf_weapon_breakable_sign"
+			Allowed		"tf_weapon_slap"
+			Allowed		"tf_weapon_jar_gas"
+			Allowed		"tf_weapon_flaregun"
+		//	Allowed		"tf_weapon_flaregun_revenge"
+			Allowed		"tf_weapon_rocketpack"
+			Allowed		"tf_weapon_cannon"
+			Allowed		"tf_wearable_demoshield"
+			Allowed		"tf_weapon_bottle"
+			Allowed		"tf_weapon_sword"
+			Allowed		"tf_weapon_stickbomb"
+			Allowed		"tf_weapon_lunchbox"
+			Allowed		"tf_weapon_fists"
+			Allowed		"tf_weapon_wrench"
+			Allowed		"tf_weapon_robot_arm"
+			Allowed		"tf_weapon_shotgun_building_rescue"
+		//	Allowed		"tf_weapon_mechanical_arm"
+		//	Allowed		"tf_weapon_laser_pointer"
+		//	Allowed		"tf_weapon_pda_engineer_build"
+		//	Allowed		"tf_weapon_pda_engineer_destroy"
+			Allowed		"tf_weapon_crossbow"
+			Allowed		"tf_weapon_bonesaw"
+			Allowed		"tf_weapon_compound_bow"
+		//	Allowed		"tf_weapon_jar"
+			Allowed		"tf_weapon_club"
+			Allowed		"tf_weapon_knife"
+			Allowed		"tf_weapon_pda_spy"
+			Allowed		"tf_weapon_invis"
+			Allowed		"tf_wearable"
+			Allowed		"tf_powerup_bottle"
+		//	Allowed		"tf_weapon_spellbook"
+		}
+
+		
+
+	StartingCurrency		500
+	RespawnWaveTime 0
+	CanBotsAttackWhileInSpawnRoom no
+	FixedRespawnWaveTime Yes
+	//EventPopfile        Halloween
+
+	Mission // Spy - wave 4
+	{
+		Objective Spy  
+
+		InitialCooldown 30
+		Where spawnbot
+		BeginAtWave 4
+		RunForThisManyWaves 2
+		CooldownTime 60
+		DesiredCount 1
+
+		TFBot
+		{
+			Template T_TFBot_Spy
+		}
+	}
+
+	Mission // Huntsman-Sniper - wave 4
+	{
+		Objective Sniper
+
+		InitialCooldown 10
+		Where spawnbot
+		BeginAtWave 4
+		RunForThisManyWaves 1
+		CooldownTime 25
+		DesiredCount 2
+
+			TFBot
+			{
+				Template T_TFBot_Sniper_Huntsman
+			}
+	}
+
+//WAVE 1 //3 Golems, 25 Pyros | Support: Dwarves
+//Total 200///////////////////////////////////////////////////////////////////////////////////////////////////////
+	Wave
+	{
+		Explanation [$SIGSEGV]
+		{
+			Line "{red}===TARGET PRACTICE==="
+			Line "{yellow}Do you want to be a Huntsman? This mission will hone your skills!"
+			Line "{yellow}Recommended: 2-4 players w/ ranged weapons (preferably the Huntsman)"
+			Line "{green}Tip:{reset} You can try out other weapons! You can equip the Loose Cannon, Rescue Ranger, Thermal Thruster, Gas Passer, or any Flare Gun!"
+		}
+		
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaitWhenDone 65
+		Checkpoint Yes
+		
+		WaveSpawn
+		{
+			Name "wave1ubermedic1"
+			
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 25
+			TotalCurrency 30
+
+			TFBot
+			{
+				Template T_TFBot_Heavyweapons_Golem
+				AddCond [$SIGSEGV]
+				{
+					Name TF_COND_RUNE_KING
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+
+			WaitForAllDead "wave1ubermedic1"
+
+			Name "wave1support"
+
+			Where spawnbot
+			TotalCount 24
+			MaxActive 12
+			SpawnCount 6
+			WaitBeforeStarting 13
+			WaitBetweenSpawns 15
+			TotalCurrency 0
+
+			Support 1
+
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier_Buff
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave1ubermedic1"
+			
+			Name "wave1snipersquad1"
+
+			Where spawnbot
+			TotalCount 7
+			MaxActive 5
+			SpawnCount 2
+			WaitBeforeStarting 7
+			WaitBetweenSpawns 3
+			TotalCurrency 35
+
+			TFBot
+			{
+				Template T_TFBot_Pyro_Volcano_Fragment
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave1snipersquad1"
+
+			Name "wave1ubermedic2"
+			
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 0
+			TotalCurrency 10
+
+
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Golem
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_KING
+					}
+				}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave1ubermedic2"
+			
+			Name "wave1snipersquad2"
+			Where spawnbot
+			TotalCount 6
+			MaxActive 6
+			SpawnCount 3
+			WaitBeforeStarting 9
+			WaitBetweenSpawns 6
+			TotalCurrency 30
+
+				TFBot
+				{
+					Template T_TFBot_Pyro_Volcano_Fragment
+				}
+				TFBot
+				{
+					Template T_TFBot_Pyro_Volcano_Fragment
+				}
+				TFBot
+				{
+					Template T_TFBot_Pyro_Volcano_Fragment
+				}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave1snipersquad2"
+			
+			Name "wave1boss"
+			
+			Where spawnbot
+			TotalCount 6
+			MaxActive 6
+			SpawnCount 6
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 0
+			TotalCurrency 60
+
+			Squad
+			{
+				FormationSize 250
+
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Golem
+					AddCond [$SIGSEGV]
+					{
+						Name TF_COND_RUNE_KING
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_Pyro_Volcano_Fragment
+				}
+				TFBot
+				{
+					Template T_TFBot_Pyro_Volcano_Fragment
+				}
+				TFBot
+				{
+					Template T_TFBot_Pyro_Volcano_Fragment
+				}
+				TFBot
+				{
+					Template T_TFBot_Pyro_Volcano_Fragment
+				}
+				TFBot
+				{
+					Template T_TFBot_Pyro_Volcano_Fragment
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave1ubermedic2"
+			
+			Name "wave1boss2"
+			
+			Where spawnbot
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 4
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 15
+			TotalCurrency 20
+
+			Squad
+			{
+				FormationSize 10
+
+				TFBot
+				{
+					Template T_TFBot_Pyro_Powerjack
+					Tag bot_squad_member
+				}
+				TFBot
+				{
+					Template T_TFBot_Pyro_Powerjack
+					Tag bot_squad_member
+				}
+				TFBot
+				{
+					Template T_TFBot_Pyro_Powerjack
+					Tag bot_squad_member
+				}
+				TFBot
+				{
+					Template T_TFBot_Pyro_Powerjack
+					Tag bot_squad_member
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave1ubermedic2"
+			
+			Name "wave1boss3"
+			
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 0
+			TotalCurrency 15
+
+			TFBot
+			{
+				Template T_TFBot_Pyro_Powerjack
+			}
+		}
+	}
+	
+//Wave 2//1 GIANT Deflector Medic, 5 Deflector Medics, 15 Demoknights, 15 Scouts | Support: HealOnKill Generics (Soldier, Demo and Heavy)
+//Introduces: Deflector Medics + Deflector Medic Boss (Deflectors are resistant to arrows except crits)
+//Also Introduces: B.A.S.E. Jumper Scouts (who glide)
+//Boss: Giant Deflector Medic////////////////////////////////////////////////////////////////////////
+//Total Currency: 250//////////////////////////////////////////////////////////////////////
+	Wave
+	{
+	
+			Explanation [$SIGSEGV]
+		{
+			Line "{green}WAVE 2:{reset}{yellow} Focus... Ready... Aim... This wave will test your sniping ability!"
+			Line "{green}Tip:{reset}{yellow} Huntsmen, watch for the Deflectors! Their sweet spot is their head!"
+		}
+		
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaitWhenDone 65
+		Checkpoint Yes
+		
+	
+		WaveSpawn
+		{
+
+			Name "wave2scout0"
+			Where spawnbot
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 2
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 15
+			TotalCurrency 20
+
+				TFBot
+				{
+					Template T_TFBot_Scout_Fan_O_War
+				}
+		}
+
+		WaveSpawn
+		{
+
+			Name "wave2support1"
+
+			Where spawnbot
+			TotalCount 30
+			MaxActive 3
+			SpawnCount 3
+			WaitBeforeStarting 15
+			WaitBetweenSpawns 4
+			TotalCurrency 0
+
+			Support 1
+
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_Generic_Soldier_Healonkill
+				}
+				TFBot
+				{
+					Template T_TFBot_Generic_Heavyweapons_Healonkill
+				}
+				TFBot
+				{
+					Template T_TFBot_Generic_Demoman_Healonkill
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+
+			Name "wave2scout1"
+			Where spawnbot
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
+			WaitBeforeStarting 25
+			WaitBetweenSpawns 0
+			TotalCurrency 10
+
+				TFBot
+				{
+					Template T_TFBot_Scout_Fan_O_War
+				}
+		}
+
+		
+		WaveSpawn
+		{	
+			WaitForAllSpawned "wave2scout1"
+
+			Name "wave2scout2"
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 15
+
+				TFBot
+				{
+					Template T_TFBot_Scout_Fan_O_War
+				}
+		}
+
+		
+		WaveSpawn
+		{	
+			WaitForAllDead "wave2scout2"
+
+			Name "wave2scout3"
+			Where spawnbot
+			TotalCount 5
+			MaxActive 5
+			SpawnCount 5
+			WaitBeforeStarting 7
+			WaitBetweenSpawns 0
+			TotalCurrency 25
+
+				TFBot
+				{
+					Template T_TFBot_Scout_Clay_Pigeon
+				}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave2scout3"
+
+			Name "wave2medic1"
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 0
+			TotalCurrency 10
+
+				TFBot
+				{
+					Template T_TFBot_Medic_Armored
+				}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave2medic1"
+
+			Name "wave2demoknights1"
+			
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 0
+			TotalCurrency 30
+
+				TFBot
+				{
+					Template T_TFBot_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_Demoman_Knight
+				}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave2demoknights1"
+			
+			Name "wave2medic2"
+			Where spawnbot
+			TotalCount 6
+			MaxActive 6
+			SpawnCount 3
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 12
+			TotalCurrency 30
+
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_Medic_Armored
+				}
+				TFBot
+				{
+					Template T_TFBot_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_Demoman_Knight
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave2medic2"
+
+			Name "wave2demoknights2"
+			
+			Where spawnbot
+			TotalCount 6
+			MaxActive 3
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 5
+			TotalCurrency 30
+
+				TFBot
+				{
+					Template T_TFBot_Scout_Fan_O_War
+				}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave2medic2"
+
+			Name "wave2demoknights2"
+			
+			Where spawnbot
+			TotalCount 6
+			MaxActive 6
+			SpawnCount 3
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 7
+			TotalCurrency 30
+
+				TFBot
+				{
+					Template T_TFBot_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_Demoman_Knight
+				}
+		}
+
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave2demoknights2"
+			
+			FirstSpawnWarningSound "vo\mvm\norm\taunts\medic_mvm_taunts10.mp3"
+			
+			Name "wave2boss"
+			
+			Where spawnbot
+			TotalCount 5
+			MaxActive 5
+			SpawnCount 5
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 0
+			TotalCurrency 50
+
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_Medic_Armored
+					Tag bot_squad_member
+				}
+				TFBot
+				{
+					Template T_TFBot_Boss_Giant_Medic_Armored
+					Attributes UseBossHealthBar
+					Tag bot_squad_member
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_Armored
+					Tag bot_squad_member
+				}
+				TFBot
+				{
+					Template T_TFBot_Demoman_Knight_Gold
+					Tag bot_squad_member
+				}
+				TFBot
+				{
+					Template T_TFBot_Demoman_Knight_Gold
+					Tag bot_squad_member
+				}				
+			}
+		}
+	}
+//Wave 3
+//10 BASE Jumper Scouts, 10 Huntsman, 5 Buff Dwarves
+//SUPPORT: GRU Heavies, KGB Heavies
+//Boss: 2 Giant Huntsman Snipers w/ Buff Dwarf
+//Total Currency: 250
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+	Wave
+	{
+	
+		Explanation [$SIGSEGV]
+		{
+			Line "{green}WAVE 3:{reset}{yellow} Like being shot at? Too bad! This wave tests your precision under fire."
+			Line "{green}Tip:{reset}{yellow} Huntsmen, you will be shot at. Dodge... Then counter fire!"
+		}
+
+
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaitWhenDone 65
+		Checkpoint Yes
+		
+
+		WaveSpawn
+		{
+
+			Name "wave3support1"
+
+			Where spawnbot
+			TotalCount 12
+			MaxActive 2
+			SpawnCount 1
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 6
+			TotalCurrency 0
+
+			Support 1
+
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Heavyweight_Champ
+				}
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Heavyweight_Champ_Fast
+				}
+			}
+		}
+
+
+		WaveSpawn
+		{
+			Name "wave3pigeonscouts1"
+			
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 0
+			TotalCurrency 30
+
+			TFBot
+			{
+				Template T_TFBot_Scout_Clay_Pigeon_Sandman
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned "wave3pigeonscouts1"
+
+			Name "wave3huntsman1"
+
+			Where spawnbot
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 4
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 40
+
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_Sniper_Huntsman
+				}
+				TFBot
+				{
+					Template T_TFBot_Scout_Clay_Pigeon_Sandman
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave3huntsman1"
+		
+			Name "wave3support2"
+
+			Where spawnbot
+			TotalCount 12
+			MaxActive 2
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 12
+			TotalCurrency 0
+
+			Support 1
+
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Heavyweight_Champ
+				}
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Heavyweight_Champ_Fast
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave3huntsman1"
+
+			Name "wave3pigeonscouts2"
+			
+			Where spawnbot
+			TotalCount 5
+			MaxActive 5
+			SpawnCount 1
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 1
+			TotalCurrency 25
+
+			TFBot
+			{
+				Template T_TFBot_Scout_Clay_Pigeon_Sandman
+			}
+		}
+		
+
+		WaveSpawn
+		{
+
+			WaitForAllSpawned "wave3pigeonscouts2"
+
+			Name "wave3huntsman2"
+
+			Where spawnbot
+			TotalCount 8
+			MaxActive 4
+			SpawnCount 2
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 8
+			TotalCurrency 80
+
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier_Buff
+					Tag bot_squad_member
+				}
+				TFBot
+				{
+					Template T_TFBot_Sniper_Huntsman
+					Tag bot_squad_member
+				}
+			}
+		}
+
+
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave3huntsman2"
+		
+			Name "wave3support3"
+
+			Where spawnbot
+			TotalCount 12
+			MaxActive 2
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 6
+			TotalCurrency 0
+
+			Support 1
+
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Heavyweight_Champ
+				}
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Heavyweight_Champ_Fast
+				}
+				TFBot
+				{
+					Template T_TFBot_Heavyweapons_Heavyweight_Champ_Fast
+				}
+			}
+		}
+		
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave3huntsman2"
+
+			Name "wave3boss"
+			
+			Where spawnbot_wall_left
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
+			WaitBeforeStarting 7
+			WaitBetweenSpawns 10
+			TotalCurrency 0
+
+			TFBot
+			{
+				Template T_TFBot_Sniper_Huntsman
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave3huntsman2"
+
+			Name "wave3boss"
+			
+			Where spawnbot_wall_right
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
+			WaitBeforeStarting 7
+			WaitBetweenSpawns 10
+			TotalCurrency 0
+
+			TFBot
+			{
+				Template T_TFBot_Sniper_Huntsman
+			}
+		}
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave3huntsman2"
+
+			FirstSpawnWarningSound "vo\mvm\norm\sniper_mvm_specialweapon04.mp3"
+			
+			Name "wave3boss"
+
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 0
+			TotalCurrency 75
+			
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_Giant_Sniper_Huntsman
+					Attributes UseBossHealthBar
+					Name "Bow Bros."
+				}				
+				TFBot
+				{
+					Template T_TFBot_Giant_Sniper_Huntsman
+					Attributes UseBossHealthBar
+					Name "Bow Bros."
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier_Buff
+					Tag bot_squad_member
+				}
+			}
+		}
+	}
+//Wave 4
+//WAVE: Giant BASE Jumper Scout
+//SUPPORT: Spy, Huntsman, BASE Jumper Scouts
+//BOSS: Tank!
+//CREDITS: 500
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	Wave
+	{
+	
+		Explanation [$SIGSEGV]
+		{
+			Line "{green}WAVE 4:{reset}{yellow} Will you operate under pressure? This tank will surely will test your resolve!"
+			Line "{green}Tip:{reset}{yellow} Beware of the Spy and counter-Huntsmen!"
+		}
+
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaitWhenDone 65
+		Checkpoint Yes
+
+		
+		WaveSpawn
+		{
+			FirstSpawnWarningSound "vo\mvm\norm\taunts\scout_mvm_taunts05.mp3"
+		
+			Name "wave4scout1"
+
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 5
+			TotalCurrency 0
+			
+			TFBot
+			{
+				Template T_TFBot_Giant_Scout_Clay_Pigeon_Sandman
+				Attributes UseBossHealthBar
+				Attributes DisableDodge
+			}
+		}
+				
+		WaveSpawn
+		{
+		
+			Name "wave4support1"
+
+			Where spawnbot
+			TotalCount 5
+			MaxActive 5
+			SpawnCount 1
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 1
+			TotalCurrency 0
+			
+			Support 1
+			
+			TFBot
+			{
+				Template T_TFBot_Scout_Clay_Pigeon_Sandman
+			}
+		}
+
+		WaveSpawn
+		{
+			Name "wave4tank1"
+			TotalCount 1
+			WaitBeforeStarting 6
+			TotalCurrency 500
+			
+			FirstSpawnOutput                                                                                                                                                            
+			
+			{
+				Target boss_spawn_relay                                            
+				Action Trigger                         
+			}
+
+			Tank
+			{
+				Health 10000
+				Speed 60
+				Name "Tank"
+				StartingPathTrackNode "boss_path_a1"
+				Scale 0.5
+				DisableSmokestack 1
+				OnKilledOutput                                  
+				{
+					Target boss_dead_relay
+					Action Trigger                         
+				}
+				
+				OnBombDroppedOutput                             
+				{
+					Target boss_deploy_relay 
+					Action Trigger                         
+				}
+			}			
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave4scout1"
+			Name "wave4support1"
+
+			Where spawnbot
+			TotalCount 5
+			MaxActive 5
+			SpawnCount 1
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 1
+			TotalCurrency 0
+			
+			Support 1
+			
+			TFBot
+			{
+				Template T_TFBot_Scout_Clay_Pigeon_Sandman
+			}
+		}
+		
+	}
+	
+//Wave 5
+//WAVE: 50 Dwarves (Demoknight, Heavyweight Champ, Soldier, Huntsman), 15 Deflector Medics
+//MINIBOSSES: "Giant" Dwarf, Giant Deflector Medic, Tank
+//MAJOR BOSS: 8000 HP Steel Gauntlet Giant that heals all HP on kill, plus Huntsman backup
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	Wave
+	{
+		Explanation [$SIGSEGV]
+		{
+			Line "{red}FINAL WAVE: The Test"
+			Line "{green}Focus... Ready... Aim..."
+			Line "{green}Good luck!"
+		}
+		
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaitWhenDone 65
+		Checkpoint Yes
+
+		
+		WaveSpawn
+		{
+			Name "wave5phase1"
+
+			Where spawnbot
+			TotalCount 13
+			MaxActive 6
+			SpawnCount 1
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 3
+			TotalCurrency 65
+			
+			TFBot
+			{
+				Template T_TFBot_Medic_Armored
+				ItemAttributes
+				{
+					ItemName "War Head"
+					"move speed bonus" 1.3
+				}
+			}
+		}
+			
+		WaveSpawn
+		{
+			Name "wave5phase1"
+
+			Where spawnbot
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 4
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 5
+			TotalCurrency 40
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Heavyweapons_Heavyweight_Champ
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "wave4support1"
+
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
+			WaitBeforeStarting 15
+			WaitBetweenSpawns 15
+			TotalCurrency 0
+			
+			Support 1
+			
+			TFBot
+			{
+				Template T_TFBot_Scout_Clay_Pigeon_Sandman
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave5phase1"
+
+			Name "wave5phase2"
+
+			Where spawnbot
+			TotalCount 8
+			MaxActive 8
+			SpawnCount 2
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 5
+			TotalCurrency 80
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Heavyweapons_Heavyweight_Champ
+				}
+			}
+		}
+		
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave5phase1"
+			
+			StartWaveWarningSound "vo/announcer_alert.mp3"
+			FirstSpawnWarningSound "vo\mvm\norm\taunts\medic_mvm_taunts07.mp3"
+			
+			Name "wave5phase2"
+
+			Where spawnbot
+			TotalCount 8
+			MaxActive 8
+			SpawnCount 8
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 0
+			TotalCurrency 80
+			
+			Squad
+			{
+				ShouldPreserveSquad 1
+				
+				TFBot
+				{
+					Template T_TFBot_Boss_Giant_Medic_Armored
+					Attributes UseBossHealthBar
+					Tag bot_squad_member
+				}
+				TFBot
+				{
+					Template T_TFBot_Giant_Dwarf_Soldier
+					Attributes UseBossHealthBar
+					Tag bot_squad_member
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_Armored
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_Armored
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier_Buff
+					Tag bot_squad_member
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier_Backup
+					Tag bot_squad_member
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Sniper_Huntsman
+					Tag bot_squad_member
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Sniper_Huntsman
+					Tag bot_squad_member
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave5phase2"
+			
+			Name "wave5phase3"
+			
+			TotalCount 1
+			WaitBeforeStarting 5
+			TotalCurrency 200
+			
+			FirstSpawnOutput                                                                                                                                                            
+			
+			{
+				Target boss_spawn_relay                                            
+				Action Trigger                         
+			}
+
+			Tank
+			{
+				Health 12000
+				Speed 60
+				Scale 0.5
+				DisableSmokestack 1
+				Name "Tank"
+				StartingPathTrackNode "boss_path_a1"
+				OnKilledOutput                                  
+				{
+					Target boss_dead_relay
+					Action Trigger                         
+				}
+				
+				OnBombDroppedOutput                             
+				{
+					Target boss_deploy_relay 
+					Action Trigger                         
+				}
+			}			
+		}
+		
+		WaveSpawn
+		{
+
+			WaitForAllDead "wave5phase2"
+
+			Name "wave5phase3"
+
+			Where spawnbot
+			TotalCount 12
+			MaxActive 12
+			SpawnCount 6
+			WaitBeforeStarting 6
+			WaitBetweenSpawns 8
+			TotalCurrency 60
+			
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier_Conch
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Sniper_Huntsman
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead "wave5phase2"
+
+			Name "wave5phase3"
+
+			Where spawnbot
+			TotalCount 15
+			MaxActive 10
+			SpawnCount 5
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 10
+			TotalCurrency 75
+			
+			RandomChoice
+			{
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Demoman_Knight
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Heavyweapons_Heavyweight_Champ
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Sniper_Huntsman
+				}
+			}
+		}
+		
+		
+
+		WaveSpawn
+		{
+			WaitForAllDead "wave5phase3"
+			
+			Name "wave4boss"
+			
+			Where spawnbot
+			TotalCount 8
+			MaxActive 8
+			SpawnCount 8
+			WaitBeforeStarting 6
+			WaitBetweenSpawns 0
+			TotalCurrency 200
+
+		//	StartWaveWarningSound "ui/holiday/gamestartup_halloween1.mp3"
+			StartWaveWarningSound "music\mvm_start_last_wave.wav"
+			FirstSpawnWarningSound "vo/mvm/mght/heavy_mvm_m_battlecry01.mp3"
+
+			Squad
+			{
+				FormationSize 200
+
+				TFBot
+				{
+					Template T_TFBot_Boss_Giant_Golem
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier_Buff
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Soldier_Backup
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Sniper_Huntsman
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Sniper_Huntsman
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Sniper_Huntsman
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Sniper_Huntsman
+				}
+				TFBot
+				{
+					Template T_TFBot_Dwarf_Sniper_Huntsman
+				}
+			}
+		}
+	}
+}
