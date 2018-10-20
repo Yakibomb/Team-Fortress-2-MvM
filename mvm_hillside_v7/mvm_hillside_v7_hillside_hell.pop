@@ -4,6 +4,7 @@
 //Made by Yakibomb (previously Monsterphobia)
 
 //V13 changes October 20th, 2018
+//Changed Custom Upgrades file to one on the server (mvm_upgrades_mediieval_yakibomb_20180831.txt)
 //Increased starting credits count from 1500 to 3000
 //Multiplied all credits throughout the entire wave by about 1.5
 //Wave7: Added AlwayCrit to Demoknights
@@ -36,7 +37,7 @@ WaveSchedule
 {
 
 	// SIGSEGV EXCLUSIVE COMMANDS
-	CustomUpgradesFile "mvm_customupgrades_hillside_v7_yakibomb.txt" [$SIGSEGV]
+	CustomUpgradesFile "mvm_upgrades_medieval_yakibomb_20180831.txt" [$SIGSEGV]
 	NoReanimators 1
 	MedievalMode 0
 	BonusRatioFull 1.00
