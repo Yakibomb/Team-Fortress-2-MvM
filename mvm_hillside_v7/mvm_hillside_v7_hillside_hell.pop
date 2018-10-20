@@ -1,7 +1,13 @@
 //Hillside Hell (The upgraded version of Waves of Evil/Wave 666)
 //This mission is made for mvm_hillside_v7
-//This is VERSION 12 (released March 8th 2018)
+//This is VERSION 13 (released October 20th, 2018)
 //Made by Yakibomb (previously Monsterphobia)
+
+//V13 changes October 20th, 2018
+//Increased starting credits count from 1500 to 3000
+//Multiplied all credits throughout the entire wave by about 1.5
+//Wave7: Added AlwayCrit to Demoknights
+//Wave7: Removed King MannPower powerup from King Crit (for consistency reasons)
 
 //V12 changes March 8th 2018
 //Custom Upgrades should now work
@@ -86,7 +92,7 @@ WaveSchedule
 		
 	DisableSound "Announcer.MVM_Final_Wave_Start"
 
-	StartingCurrency		1500
+	StartingCurrency		3000
 	RespawnWaveTime 1
 	CanBotsAttackWhileInSpawnRoom Yes
 	FixedRespawnWaveTime Yes
@@ -158,14 +164,14 @@ WaveSchedule
 		//Wave 8: Boss Heavy, RandomChoice Crit Demoknight/Crit Huntsman
 		
 		//Cash Breakdown
-		//Starting Cash: $1500
-		//Wave 1: $200
-		//Wave 2: $300
-		//Wave 3: $450
-		//Wave 4: $500
-		//Wave 5: $650
-		//Wave 6: $500
-		//Wave 7: $1301
+		//Starting Cash: $1500->3000
+		//Wave 1: $200->300
+		//Wave 2: $300->450
+		//Wave 3: $450->625
+		//Wave 4: $500->750
+		//Wave 5: $650->925
+		//Wave 6: $500->750
+		//Wave 7: $1301->2076
 		//Wave 8: $901
 		
 
@@ -228,7 +234,7 @@ WaveSchedule
 		Checkpoint Yes
 		
 		//Wave 1: Armored Sandman Scouts
-		//Cash: $200
+		//Cash: $200->300
 		
 		WaveSpawn
 		{
@@ -240,7 +246,7 @@ WaveSchedule
 			SpawnCount 3
 			WaitBeforeStarting 1
 			WaitBetweenSpawns 3
-			TotalCurrency 200
+			TotalCurrency 300
 			
 			TFBot
 			{
@@ -269,7 +275,7 @@ WaveSchedule
 
 		
 		//Wave 2: Steel Sandvich Gauntlets + Steel xBow Medics, Giant Steel Gauntlets
-		//Cash: $400
+		//Cash: $400->600
 				
 		WaveSpawn
 		{
@@ -283,7 +289,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 2
 			WaitBetweenSpawns 12
-			TotalCurrency 40
+			TotalCurrency 60
 
 			TFBot
 			{		
@@ -336,7 +342,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 2
 			WaitBetweenSpawns 4
-			TotalCurrency 50
+			TotalCurrency 75
 
 			Squad
 			{
@@ -405,7 +411,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 1
 			WaitBetweenSpawns 0
-			TotalCurrency 20
+			TotalCurrency 30
 
 			TFBot
 			{		
@@ -459,7 +465,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 5
 			WaitBetweenSpawns 4
-			TotalCurrency 40
+			TotalCurrency 60
 
 			Squad
 			{
@@ -529,7 +535,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 1
 			WaitBetweenSpawns 6
-			TotalCurrency 60
+			TotalCurrency 90
 
 			TFBot
 			{
@@ -572,7 +578,7 @@ WaveSchedule
 			SpawnCount 5
 			WaitBeforeStarting 2
 			WaitBetweenSpawns 18
-			TotalCurrency 150
+			TotalCurrency 225
 
 			Squad
 			{
@@ -721,7 +727,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 2
 			WaitBetweenSpawns 18
-			TotalCurrency 40
+			TotalCurrency 60
 
 			Squad
 			{
@@ -782,7 +788,7 @@ WaveSchedule
 		
 
 		//Wave 3: Demorai, Steel Fire Heavies, Giant Steel Fire Huntsman
-		//Cash: $450
+		//Cash: $450->625
 				
 		
 		WaveSpawn
@@ -797,7 +803,7 @@ WaveSchedule
 			SpawnCount 8
 			WaitBeforeStarting 1
 			WaitBetweenSpawns 6
-			TotalCurrency 40
+			TotalCurrency 60
 
 			TFBot
 			{
@@ -829,7 +835,7 @@ WaveSchedule
 			SpawnCount 8
 			WaitBeforeStarting 2
 			WaitBetweenSpawns 4
-			TotalCurrency 40
+			TotalCurrency 60
 
 			TFBot
 			{
@@ -869,7 +875,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 12
 			WaitBetweenSpawns 12
-			TotalCurrency 50
+			TotalCurrency 75
 
 			TFBot
 			{
@@ -927,7 +933,7 @@ WaveSchedule
 			SpawnCount 3
 			WaitBeforeStarting 5
 			WaitBetweenSpawns 5
-			TotalCurrency 120
+			TotalCurrency 180
 
 			TFBot
 			{
@@ -959,7 +965,7 @@ WaveSchedule
 			SpawnCount 3
 			WaitBeforeStarting 8
 			WaitBetweenSpawns 5
-			TotalCurrency 120
+			TotalCurrency 180
 
 			TFBot
 			{
@@ -999,7 +1005,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 8
 			WaitBetweenSpawns 10
-			TotalCurrency 100
+			TotalCurrency 150
 
 			TFBot
 			{
@@ -1046,7 +1052,7 @@ WaveSchedule
 		}
 			
 		//Wave 4: Squads of Giant Backup Soldier + Uber xBow Medics, Crit Bonk Scouts
-		//Cash: $550
+		//Cash: $550->825
 		
 		WaveSpawn
 		{
@@ -1060,7 +1066,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 10
 			WaitBetweenSpawns 0
-			TotalCurrency 100
+			TotalCurrency 225
 
 			Squad
 			{
@@ -1216,7 +1222,7 @@ WaveSchedule
 			SpawnCount 6
 			WaitBeforeStarting 10
 			WaitBetweenSpawns 5
-			TotalCurrency 120
+			TotalCurrency 180
 
 			TFBot
 			{
@@ -1245,7 +1251,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 2
 			WaitBetweenSpawns 20
-			TotalCurrency 200
+			TotalCurrency 300
 
 			Squad
 			{
@@ -1401,7 +1407,7 @@ WaveSchedule
 			SpawnCount 3
 			WaitBeforeStarting 10
 			WaitBetweenSpawns 3
-			TotalCurrency 180
+			TotalCurrency 270
 
 			TFBot
 			{
@@ -1418,7 +1424,7 @@ WaveSchedule
 		}
 
 		//Wave 5: Tanks + Random Sized GRU Heavies
-		//Cash: $650
+		//Cash: $650->850
 			
 		WaveSpawn
 		{
@@ -1427,7 +1433,7 @@ WaveSchedule
 			Name "wave5phase1"
 			TotalCount 1
 			WaitBeforeStarting 2
-			TotalCurrency 25
+			TotalCurrency 50
 			
 			FirstSpawnOutput                                                                                                                                                            
 			
@@ -1464,7 +1470,7 @@ WaveSchedule
 			Name "wave5phase1"
 			TotalCount 1
 			WaitBeforeStarting 8
-			TotalCurrency 25
+			TotalCurrency 50
 			
 			FirstSpawnOutput                                                                                                                                                            
 			
@@ -1504,7 +1510,7 @@ WaveSchedule
 			Name "wave5phase1"
 			TotalCount 1
 			WaitBeforeStarting 14
-			TotalCurrency 25
+			TotalCurrency 50
 			
 			FirstSpawnOutput                                                                                                                                                            
 			
@@ -1544,7 +1550,7 @@ WaveSchedule
 			Name "wave5phase2"
 			TotalCount 1
 			WaitBeforeStarting 10
-			TotalCurrency 50
+			TotalCurrency 75
 			
 			FirstSpawnOutput                                                                                                                                                            
 			
@@ -1582,7 +1588,7 @@ WaveSchedule
 			Name "wave5phase2"
 			TotalCount 1
 			WaitBeforeStarting 12
-			TotalCurrency 75
+			TotalCurrency 100
 			
 			FirstSpawnOutput                                                                                                                                                            
 			
@@ -1620,7 +1626,7 @@ WaveSchedule
 			Name "wave5phase2"
 			TotalCount 1
 			WaitBeforeStarting 12
-			TotalCurrency 200
+			TotalCurrency 225
 			
 			FirstSpawnOutput                                                                                                                                                            
 			
@@ -1663,7 +1669,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 10
 			WaitBetweenSpawns 7
-			TotalCurrency 100
+			TotalCurrency 150
 
 			RandomChoice
 			{
@@ -1743,7 +1749,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 10
 			WaitBetweenSpawns 7
-			TotalCurrency 100
+			TotalCurrency 150
 
 			RandomChoice
 			{
@@ -1811,7 +1817,7 @@ WaveSchedule
 		}
 		
 		//Wave 6: Crit 10x-Stat-Powerjack Pyros
-		//Cash: $500
+		//Cash: $500->750
 		
 		WaveSpawn
 		{
@@ -1825,7 +1831,7 @@ WaveSchedule
 			SpawnCount 5
 			WaitBeforeStarting 20
 			WaitBetweenSpawns 5
-			TotalCurrency 500
+			TotalCurrency 750
 
 			TFBot
 			{
@@ -1851,7 +1857,7 @@ WaveSchedule
 		}
 		
 		//Wave 7: Crit Demoknights, Giant Demoknights, King Demoknight
-		//Cash: $1301
+		//Cash: $1301->2076
 		
 		WaveSpawn
 		{
@@ -1865,7 +1871,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 12
 			WaitBetweenSpawns 4
-			TotalCurrency 300
+			TotalCurrency 450
 
 			TFBot
 			{
@@ -1874,6 +1880,7 @@ WaveSchedule
 				ClassIcon demoknight
 				MaxVisionRange 400
 				WeaponRestrictions MeleeOnly
+				Attributes AlwaysCrit
 				Skill Expert
 				Item "The Eyelander"
 				Item "The Chargin' Targe"
@@ -1892,7 +1899,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 24
 			WaitBetweenSpawns 0
-			TotalCurrency 100
+			TotalCurrency 150
 
 			TFBot
 			{
@@ -1929,7 +1936,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 5
 			WaitBetweenSpawns 5
-			TotalCurrency 200
+			TotalCurrency 300
 
 			TFBot
 			{
@@ -1938,6 +1945,7 @@ WaveSchedule
 				ClassIcon demoknight
 				MaxVisionRange 400
 				WeaponRestrictions MeleeOnly
+				Attributes AlwaysCrit
 				Skill Expert
 				Item "The Claidheamohmor"
 				Item "The Chargin' Targe"
@@ -1957,7 +1965,7 @@ WaveSchedule
 			SpawnCount 3
 			WaitBeforeStarting 15
 			WaitBetweenSpawns 0
-			TotalCurrency 150
+			TotalCurrency 225
 
 			TFBot
 			{
@@ -1996,7 +2004,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 10
 			WaitBetweenSpawns 0
-			TotalCurrency 1
+			TotalCurrency 800
 
 			TFBot
 			{
@@ -2038,10 +2046,6 @@ WaveSchedule
 					"override footstep sound set" 2
 					"airblast vertical vulnerability multiplier" 0.1
 				}
-				AddCond [$SIGSEGV]
-				{
-					Name TF_COND_RUNE_KING
-				}
 			}
 		}
 		
@@ -2057,7 +2061,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 10
 			WaitBetweenSpawns 7
-			TotalCurrency 100
+			TotalCurrency 150
 			
 			Support Limited
 			
@@ -2094,7 +2098,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
-			TotalCurrency 1000
+			TotalCurrency 1
 			
 			Support Limited
 			
