@@ -1,13 +1,26 @@
 //Hillside Hell (The upgraded version of Waves of Evil/Wave 666)
 //This mission is made for mvm_hillside_v7
-//This is VERSION 13 (released October 20th, 2018)
+//This is VERSION 14 (released October 26th, 2018)
 //Made by Yakibomb (previously Monsterphobia)
 
+//V14 changes October 26th, 2018
+//Reduced starting cash from 3000 -> 2000
+//Reduced cash count throughout whole wave (again!)
+//Wave2: Testing out new attribute "alt-fire disabled" on Sandvich Heavys Gauntlets
+//Wave4: Changed Crit Bonk FoW Scouts -> Conch Soldiers
+//Wave4: Added Conch Soldiers to Giant Med/Soldier Squads
+//Wave4: Giant Medics now reload slowly, but have a high clip size and attack quickly.
+//Wave4: Giant Battalion Soldier has AlwaysCrit attribute
+//Wave6: Pyros now take less damage (2->1)
+//Wave7: Removed Harbinger Scout in favor of dummy wavespawn method (Thanks "what a nerd gamer" for teaching me!)
+//Wave7: Increased Chargin' Targe's charge range.
+//Wave9: Increased damage of support. Reduced Scale of support.
+
+
 //V13 changes October 20th, 2018
-//Changed Custom Upgrades file to one on the server (mvm_upgrades_mediieval_yakibomb_20180831.txt)
 //Increased starting credits count from 1500 to 3000
 //Multiplied all credits throughout the entire wave by about 1.5
-//Wave7: Added AlwayCrit to Demoknights
+//Wave7: Added AlwaysCrit to Demoknights
 //Wave7: Removed King MannPower powerup from King Crit (for consistency reasons)
 
 //V12 changes March 8th 2018
@@ -93,7 +106,8 @@ WaveSchedule
 		
 	DisableSound "Announcer.MVM_Final_Wave_Start"
 
-	StartingCurrency		3000
+
+	StartingCurrency		2000
 	RespawnWaveTime 1
 	CanBotsAttackWhileInSpawnRoom Yes
 	FixedRespawnWaveTime Yes
@@ -150,18 +164,18 @@ WaveSchedule
 		}
 	}
 	
-	//HILLSIDE HELL v3, WAVE 666///////////////////////////////////////////////////////////////////////////////////////////////////////
+	//HILLSIDE HELL, WAVE 666///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		//Notes on Wave
 		//Support: 2 Spies + 1 Sniper
 		//Wave 1: Armored Sandman Scouts
 		//Wave 2: Steel Sandvich Gauntlets + Steel xBow Medics, Giant Steel Gauntlets
 		//Wave 3: Demorai, Steel Fire Heavies, Giant Steel Fire Huntsmen
-		//Wave 4: Squads of Giant Backup Soldiers + xBow Medics, Crit Bonk FoW Scouts
+		//Wave 4: Squads of Giant Backup Soldiers + xBow Medics, Concheror Soldiers
 		//Wave 5: Tanks + Random Sized GRU Heavies
 		//Wave 6: Crit 10x-Stat-Powerjack Pyros
 		//Wave 7: Crit Demoknights, Giant Crit Demoknights
-		//Bonus Round: Crit King Demoknight, Support Huntsmen, and a special guest
+		//Bonus Round: Crit King Demoknight, Support Huntsmen
 		//Wave 8: Boss Heavy, RandomChoice Crit Demoknight/Crit Huntsman
 		
 		//Cash Breakdown
@@ -183,7 +197,7 @@ WaveSchedule
 		{
 			Line "{red}===HILLSIDE HELL==="
 			Line "{yellow}Wave 666-Style Mission!"
-		//	Line "{red}There are no health packs dropped by default! However, you can buy that upgrade at the store."
+		//	Line "{red}There are no health packs dropped by default! Use alternative methods to heal."
 			Line "{yellow}Recommended: 4-5 players"
 			Line "{green}Tip:{reset} Try out some new weapons! You can equip the Loose Cannon, Rescue Ranger, Jarate, Thermal Thruster, Gas Passer, or any Flare Gun!"
 			Line "{green}Tip:{reset} A friendly sentry is watching at the bomb hatch so you don't have to. Don't let it run out of ammo!"
@@ -237,8 +251,11 @@ WaveSchedule
 		//Wave 1: Armored Sandman Scouts
 		//Cash: $200->300
 		
+		
+		
 		WaveSpawn
 		{
+			WaitForAllSpawned "wave1phase0"
 			Name "wave1phase1"
 			
 			Where spawnbot
@@ -313,6 +330,7 @@ WaveSchedule
 					ItemName "The Robo-Sandvich"
 					"lunchbox adds minicrits" 2
 					"energy buff dmg taken multiplier" 0.5
+					"alt-fire disabled" 1
 				}
 				ItemAttributes
 				{
@@ -367,6 +385,7 @@ WaveSchedule
 						ItemName "The Robo-Sandvich"
 						"lunchbox adds minicrits" 2
 						"energy buff dmg taken multiplier" 1.2
+						"alt-fire disabled" 1
 					}
 					CharacterAttributes
 					{
@@ -412,7 +431,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 1
 			WaitBetweenSpawns 0
-			TotalCurrency 30
+			TotalCurrency 15
 
 			TFBot
 			{		
@@ -435,6 +454,7 @@ WaveSchedule
 					ItemName "The Robo-Sandvich"
 					"lunchbox adds minicrits" 2
 					"energy buff dmg taken multiplier" 0.5
+					"alt-fire disabled" 1
 				}
 				ItemAttributes
 				{
@@ -466,7 +486,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 5
 			WaitBetweenSpawns 4
-			TotalCurrency 60
+			TotalCurrency 40
 
 			Squad
 			{
@@ -491,6 +511,7 @@ WaveSchedule
 						ItemName "The Robo-Sandvich"
 						"lunchbox adds minicrits" 2
 						"energy buff dmg taken multiplier" 1.2
+						"alt-fire disabled" 1
 					}
 					CharacterAttributes
 					{
@@ -536,7 +557,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 1
 			WaitBetweenSpawns 6
-			TotalCurrency 90
+			TotalCurrency 60
 
 			TFBot
 			{
@@ -557,6 +578,7 @@ WaveSchedule
 					ItemName "The Robo-Sandvich"
 					"lunchbox adds minicrits" 2
 					"energy buff dmg taken multiplier" 1.2
+					"alt-fire disabled" 1
 				}
 				CharacterAttributes
 				{
@@ -578,7 +600,7 @@ WaveSchedule
 			MaxActive 10
 			SpawnCount 5
 			WaitBeforeStarting 2
-			WaitBetweenSpawns 18
+			WaitBetweenSpawns 13
 			TotalCurrency 225
 
 			Squad
@@ -605,6 +627,7 @@ WaveSchedule
 						ItemName "The Robo-Sandvich"
 						"lunchbox adds minicrits" 2
 						"energy buff dmg taken multiplier" 0.5
+						"alt-fire disabled" 1
 					}
 					ItemAttributes
 					{
@@ -728,7 +751,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 2
 			WaitBetweenSpawns 18
-			TotalCurrency 60
+			TotalCurrency 40
 
 			Squad
 			{
@@ -753,6 +776,7 @@ WaveSchedule
 						ItemName "The Robo-Sandvich"
 						"lunchbox adds minicrits" 2
 						"energy buff dmg taken multiplier" 1.2
+						"alt-fire disabled" 1
 					}
 					CharacterAttributes
 					{
@@ -789,7 +813,7 @@ WaveSchedule
 		
 
 		//Wave 3: Demorai, Steel Fire Heavies, Giant Steel Fire Huntsman
-		//Cash: $450->625
+		//Cash: $450->600
 				
 		
 		WaveSpawn
@@ -804,7 +828,7 @@ WaveSchedule
 			SpawnCount 8
 			WaitBeforeStarting 1
 			WaitBetweenSpawns 6
-			TotalCurrency 60
+			TotalCurrency 80
 
 			TFBot
 			{
@@ -836,7 +860,7 @@ WaveSchedule
 			SpawnCount 8
 			WaitBeforeStarting 2
 			WaitBetweenSpawns 4
-			TotalCurrency 60
+			TotalCurrency 80
 
 			TFBot
 			{
@@ -871,9 +895,9 @@ WaveSchedule
 			Name "wave3phase3"
 			
 			Where spawnbot
-			TotalCount 2
-			MaxActive 2
-			SpawnCount 2
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
 			WaitBeforeStarting 12
 			WaitBetweenSpawns 12
 			TotalCurrency 75
@@ -934,7 +958,7 @@ WaveSchedule
 			SpawnCount 3
 			WaitBeforeStarting 5
 			WaitBetweenSpawns 5
-			TotalCurrency 180
+			TotalCurrency 120
 
 			TFBot
 			{
@@ -966,7 +990,7 @@ WaveSchedule
 			SpawnCount 3
 			WaitBeforeStarting 8
 			WaitBetweenSpawns 5
-			TotalCurrency 180
+			TotalCurrency 120
 
 			TFBot
 			{
@@ -1001,12 +1025,12 @@ WaveSchedule
 			Name "wave3phase4"
 						
 			Where spawnbot
-			TotalCount 4
-			MaxActive 2
+			TotalCount 5
+			MaxActive 3
 			SpawnCount 1
 			WaitBeforeStarting 8
 			WaitBetweenSpawns 10
-			TotalCurrency 150
+			TotalCurrency 125
 
 			TFBot
 			{
@@ -1052,8 +1076,8 @@ WaveSchedule
 			}
 		}
 			
-		//Wave 4: Squads of Giant Backup Soldier + Uber xBow Medics, Crit Bonk Scouts
-		//Cash: $550->825
+		//Wave 4: Squads of Giant Backup Soldier + Uber xBow Medics, Concheror Soldiers
+		//Cash: $550->700
 		
 		WaveSpawn
 		{
@@ -1062,16 +1086,16 @@ WaveSchedule
 			Name "wave4phase1"
 			
 			Where spawnbot
-			TotalCount 4
-			MaxActive 4
-			SpawnCount 4
+			TotalCount 10
+			MaxActive 10
+			SpawnCount 10
 			WaitBeforeStarting 10
 			WaitBetweenSpawns 0
-			TotalCurrency 225
+			TotalCurrency 200
 
 			Squad
 			{
-				FormationSize 250
+				FormationSize 600
 				ShouldPreserveSquad 1
 				
 				TFBot
@@ -1079,13 +1103,14 @@ WaveSchedule
 					Class Soldier
 					Name "Giant Backup Soldier"
 					ClassIcon soldier_backup
-					MaxVisionRange 400
+					MaxVisionRange 800
 					Health 3800
 					Scale 1.75
 					Skill Expert
 					WeaponRestrictions MeleeOnly
 					Attributes MiniBoss
 					Attributes SpawnWithFullCharge
+					Attributes AlwaysCrit
 					
 					Item "Upgradeable TF_WEAPON_SHOVEL"
 					Item "The Battalion's Backup"
@@ -1115,12 +1140,13 @@ WaveSchedule
 					Class Soldier
 					Name "Giant Backup Soldier"
 					ClassIcon soldier_backup
-					MaxVisionRange 400
+					MaxVisionRange 800
 					Health 3800
 					Scale 1.75
 					Skill Expert
 					WeaponRestrictions MeleeOnly
 					Attributes MiniBoss
+					Attributes AlwaysCrit
 					Attributes SpawnWithFullCharge
 					
 					Item "Upgradeable TF_WEAPON_SHOVEL"
@@ -1169,7 +1195,9 @@ WaveSchedule
 						"killstreak idleeffect" 1
 						"killstreak tier" 1
 						"killstreak effect" 2005
-						"faster reload rate" 0.25
+						"reload time increased" 3
+						"clip size upgrade atomic" 4
+						"fire rate bonus" 0.25
 						"health regen" 40
 					}
 					CharacterAttributes
@@ -1201,12 +1229,98 @@ WaveSchedule
 						"killstreak idleeffect" 1
 						"killstreak tier" 1
 						"killstreak effect" 2005
-						"faster reload rate" 0.25
+						"reload time increased" 3
+						"clip size upgrade atomic" 4
+						"fire rate bonus" 0.25
 						"health regen" 40
 					}
 					CharacterAttributes
 					{
 						"move speed penalty" 0.5
+					}
+				}
+				TFBot
+				{
+					Class Soldier
+					ClassIcon soldier_conch
+					Name "Concheror Soldier"
+					Skill Expert
+					Attributes SpawnWithFullCharge
+					Item "The Concheror"
+					ItemAttributes
+					{
+						ItemName "The Concheror"
+						"increase buff duration HIDDEN" 9
+					}
+				}
+				TFBot
+				{
+					Class Soldier
+					ClassIcon soldier_conch
+					Name "Concheror Soldier"
+					Skill Normal
+					Attributes SpawnWithFullCharge
+					Item "The Concheror"
+					ItemAttributes
+					{
+						ItemName "The Concheror"
+						"increase buff duration HIDDEN" 9
+					}
+				}
+				TFBot
+				{
+					Class Soldier
+					ClassIcon soldier_conch
+					Name "Concheror Soldier"
+					Skill Hard
+					Attributes SpawnWithFullCharge
+					Item "The Concheror"
+					ItemAttributes
+					{
+						ItemName "The Concheror"
+						"increase buff duration HIDDEN" 9
+					}
+				}
+				TFBot
+				{
+					Class Soldier
+					ClassIcon soldier_conch
+					Name "Concheror Soldier"
+					Skill Easy
+					Attributes SpawnWithFullCharge
+					Item "The Concheror"
+					ItemAttributes
+					{
+						ItemName "The Concheror"
+						"increase buff duration HIDDEN" 9
+					}
+				}
+				TFBot
+				{
+					Class Soldier
+					ClassIcon soldier_conch
+					Name "Concheror Soldier"
+					Skill Expert
+					Attributes SpawnWithFullCharge
+					Item "The Concheror"
+					ItemAttributes
+					{
+						ItemName "The Concheror"
+						"increase buff duration HIDDEN" 9
+					}
+				}
+				TFBot
+				{
+					Class Soldier
+					ClassIcon soldier_conch
+					Name "Concheror Soldier"
+					Skill Easy
+					Attributes SpawnWithFullCharge
+					Item "The Concheror"
+					ItemAttributes
+					{
+						ItemName "The Concheror"
+						"increase buff duration HIDDEN" 9
 					}
 				}
 			}
@@ -1218,24 +1332,28 @@ WaveSchedule
 			
 			Name "wave4phase1"
 			Where spawnbot
-			TotalCount 12
+			TotalCount 18
 			MaxActive 12
-			SpawnCount 6
-			WaitBeforeStarting 10
+			SpawnCount 3
+			WaitBeforeStarting 8
 			WaitBetweenSpawns 5
-			TotalCurrency 180
+			TotalCurrency 150
 
 			TFBot
 			{
-				Class Scout
-				ClassIcon scout_bonk
-				Name "Bonk! Scout"
-				Skill Expert
-				MaxVisionRange 400
+				Class Soldier
+				ClassIcon soldier_conch
+				Name "Concheror Soldier"
+				Skill Hard
+				MaxVisionRange 500
 				WeaponRestrictions MeleeOnly
-				Attributes AlwaysCrit
-				Item "Bonk! Atomic Punch"
-				Item "The Fan O'War"
+					Attributes SpawnWithFullCharge
+					Item "The Concheror"
+					ItemAttributes
+					{
+						ItemName "The Concheror"
+						"increase buff duration HIDDEN" 9
+					}
 			}
 		}
 		
@@ -1247,16 +1365,16 @@ WaveSchedule
 			Name "wave4phase2"
 			
 			Where spawnbot
-			TotalCount 8
-			MaxActive 8
-			SpawnCount 4
+			TotalCount 10
+			MaxActive 10
+			SpawnCount 10
 			WaitBeforeStarting 2
 			WaitBetweenSpawns 20
-			TotalCurrency 300
+			TotalCurrency 200
 
 			Squad
 			{
-				FormationSize 250
+				FormationSize 300
 				ShouldPreserveSquad 1
 				
 				TFBot
@@ -1264,13 +1382,14 @@ WaveSchedule
 					Class Soldier
 					Name "Giant Backup Soldier"
 					ClassIcon soldier_backup
-					MaxVisionRange 400
+					MaxVisionRange 800
 					Health 3800
 					Scale 1.75
 					Skill Expert
 					WeaponRestrictions MeleeOnly
 					Attributes MiniBoss
 					Attributes SpawnWithFullCharge
+					Attributes AlwaysCrit
 					
 					Item "Upgradeable TF_WEAPON_SHOVEL"
 					Item "The Battalion's Backup"
@@ -1300,12 +1419,13 @@ WaveSchedule
 					Class Soldier
 					Name "Giant Backup Soldier"
 					ClassIcon soldier_backup
-					MaxVisionRange 400
+					MaxVisionRange 800
 					Health 3800
 					Scale 1.75
 					Skill Expert
 					WeaponRestrictions MeleeOnly
 					Attributes MiniBoss
+					Attributes AlwaysCrit
 					Attributes SpawnWithFullCharge
 					
 					Item "Upgradeable TF_WEAPON_SHOVEL"
@@ -1343,7 +1463,7 @@ WaveSchedule
 					Attributes MiniBoss
 					Attributes Aggressive
 					WeaponRestrictions PrimaryOnly
-										
+					
 					Item "Das Metalmeatencasen"
 					Item "The Crusader's Crossbow"
 					Item "The Amputator"
@@ -1351,14 +1471,16 @@ WaveSchedule
 					ItemAttributes
 					{
 						ItemName "The Crusader's Crossbow"
-						"faster reload rate" 0.25
 						"killstreak idleeffect" 1
 						"killstreak tier" 1
 						"killstreak effect" 2005
+						"reload time increased" 3
+						"clip size upgrade atomic" 4
+						"fire rate bonus" 0.25
+						"health regen" 40
 					}
 					CharacterAttributes
 					{
-						"health regen" 40
 						"move speed penalty" 0.5
 					}
 				}
@@ -1375,7 +1497,7 @@ WaveSchedule
 					Attributes Aggressive
 					Attributes MiniBoss
 					WeaponRestrictions PrimaryOnly
-										
+					
 					Item "Das Metalmeatencasen"
 					Item "The Crusader's Crossbow"
 					Item "The Amputator"
@@ -1383,15 +1505,101 @@ WaveSchedule
 					ItemAttributes
 					{
 						ItemName "The Crusader's Crossbow"
-						"faster reload rate" 0.25
 						"killstreak idleeffect" 1
 						"killstreak tier" 1
 						"killstreak effect" 2005
+						"reload time increased" 3
+						"clip size upgrade atomic" 4
+						"fire rate bonus" 0.25
+						"health regen" 40
 					}
 					CharacterAttributes
 					{
-						"health regen" 40
 						"move speed penalty" 0.5
+					}
+				}
+				TFBot
+				{
+					Class Soldier
+					ClassIcon soldier_conch
+					Name "Concheror Soldier"
+					Skill Expert
+					Attributes SpawnWithFullCharge
+					Item "The Concheror"
+					ItemAttributes
+					{
+						ItemName "The Concheror"
+						"increase buff duration HIDDEN" 9
+					}
+				}
+				TFBot
+				{
+					Class Soldier
+					ClassIcon soldier_conch
+					Name "Concheror Soldier"
+					Skill Normal
+					Attributes SpawnWithFullCharge
+					Item "The Concheror"
+					ItemAttributes
+					{
+						ItemName "The Concheror"
+						"increase buff duration HIDDEN" 9
+					}
+				}
+				TFBot
+				{
+					Class Soldier
+					ClassIcon soldier_conch
+					Name "Concheror Soldier"
+					Skill Hard
+					Attributes SpawnWithFullCharge
+					Item "The Concheror"
+					ItemAttributes
+					{
+						ItemName "The Concheror"
+						"increase buff duration HIDDEN" 9
+					}
+				}
+				TFBot
+				{
+					Class Soldier
+					ClassIcon soldier_conch
+					Name "Concheror Soldier"
+					Skill Easy
+					Attributes SpawnWithFullCharge
+					Item "The Concheror"
+					ItemAttributes
+					{
+						ItemName "The Concheror"
+						"increase buff duration HIDDEN" 9
+					}
+				}
+				TFBot
+				{
+					Class Soldier
+					ClassIcon soldier_conch
+					Name "Concheror Soldier"
+					Skill Expert
+					Attributes SpawnWithFullCharge
+					Item "The Concheror"
+					ItemAttributes
+					{
+						ItemName "The Concheror"
+						"increase buff duration HIDDEN" 9
+					}
+				}
+				TFBot
+				{
+					Class Soldier
+					ClassIcon soldier_conch
+					Name "Concheror Soldier"
+					Skill Easy
+					Attributes SpawnWithFullCharge
+					Item "The Concheror"
+					ItemAttributes
+					{
+						ItemName "The Concheror"
+						"increase buff duration HIDDEN" 9
 					}
 				}
 			}
@@ -1403,24 +1611,26 @@ WaveSchedule
 			
 			Name "wave4phase2"
 			Where spawnbot
-			TotalCount 18
-			MaxActive 18
-			SpawnCount 3
+			TotalCount 30
+			MaxActive 20
+			SpawnCount 5
 			WaitBeforeStarting 10
 			WaitBetweenSpawns 3
-			TotalCurrency 270
+			TotalCurrency 150
 
 			TFBot
 			{
-				Class Scout
-				ClassIcon scout_bonk
-				Name "Bonk! Scout"
+				Class Soldier
+				ClassIcon soldier_conch
+				Name "Concheror Soldier"
 				Skill Expert
-				MaxVisionRange 400
-				WeaponRestrictions MeleeOnly
-				Attributes AlwaysCrit
-				Item "Bonk! Atomic Punch"
-				Item "The Fan O'War"
+				Attributes SpawnWithFullCharge
+				Item "The Concheror"
+				ItemAttributes
+				{
+					ItemName "The Concheror"
+					"increase buff duration HIDDEN" 9
+				}
 			}
 		}
 
@@ -1818,7 +2028,7 @@ WaveSchedule
 		}
 		
 		//Wave 6: Crit 10x-Stat-Powerjack Pyros
-		//Cash: $500->750
+		//Cash: $500->600
 		
 		WaveSpawn
 		{
@@ -1827,12 +2037,12 @@ WaveSchedule
 			Name "wave6phase1"
 			
 			Where spawnbot
-			TotalCount 20
-			MaxActive 20
-			SpawnCount 5
+			TotalCount 30
+			MaxActive 24
+			SpawnCount 4
 			WaitBeforeStarting 20
-			WaitBetweenSpawns 5
-			TotalCurrency 750
+			WaitBetweenSpawns 4
+			TotalCurrency 600
 
 			TFBot
 			{
@@ -1852,7 +2062,7 @@ WaveSchedule
 					"move speed bonus" 2
 					"heal on kill" 250
 					"fire rate bonus" 0.8
-					"dmg taken increased" 2
+					"dmg taken increased" 1
 				}
 			}
 		}
@@ -1872,7 +2082,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 12
 			WaitBetweenSpawns 4
-			TotalCurrency 450
+			TotalCurrency 300
 
 			TFBot
 			{
@@ -1885,6 +2095,11 @@ WaveSchedule
 				Skill Expert
 				Item "The Eyelander"
 				Item "The Chargin' Targe"
+				ItemAttributes
+				{
+					ItemName "The Chargin' Targe"
+					"charge time increased" 18
+				}
 			}
 		}
 		
@@ -1900,7 +2115,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 24
 			WaitBetweenSpawns 0
-			TotalCurrency 150
+			TotalCurrency 100
 
 			TFBot
 			{
@@ -1921,6 +2136,7 @@ WaveSchedule
 					"move speed bonus"	0.4
 					"override footstep sound set" 2
 					"airblast vertical vulnerability multiplier" 0.1
+					"charge time increased" 2
 				}
 			}
 		}
@@ -1937,7 +2153,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 5
 			WaitBetweenSpawns 5
-			TotalCurrency 300
+			TotalCurrency 200
 
 			TFBot
 			{
@@ -1950,6 +2166,11 @@ WaveSchedule
 				Skill Expert
 				Item "The Claidheamohmor"
 				Item "The Chargin' Targe"
+				ItemAttributes
+				{
+					ItemName "The Chargin' Targe"
+					"charge time increased" 18
+				}
 			}
 		}
 		
@@ -1966,7 +2187,7 @@ WaveSchedule
 			SpawnCount 3
 			WaitBeforeStarting 15
 			WaitBetweenSpawns 0
-			TotalCurrency 225
+			TotalCurrency 150
 
 			TFBot
 			{
@@ -1982,6 +2203,7 @@ WaveSchedule
 				Item "The Scotsman's Skullcutter"
 				Item "The Splendid Screen"
 				WeaponRestrictions MeleeOnly
+				Attributes AlwaysCrit
 				CharacterAttributes
 				{
 					"move speed bonus"	0.4
@@ -2005,7 +2227,7 @@ WaveSchedule
 			SpawnCount 1
 			WaitBeforeStarting 10
 			WaitBetweenSpawns 0
-			TotalCurrency 800
+			TotalCurrency 400
 
 			TFBot
 			{
@@ -2062,7 +2284,7 @@ WaveSchedule
 			SpawnCount 4
 			WaitBeforeStarting 10
 			WaitBetweenSpawns 7
-			TotalCurrency 150
+			TotalCurrency 200
 			
 			Support Limited
 			
@@ -2085,54 +2307,32 @@ WaveSchedule
 			}
 		}
 		
+		
 		WaveSpawn
 		{
 			WaitForAllDead "wave7phase3"
 			
-			Name "harbinger"
+			Name "wave9event1"
 			
-			DoneWarningSound "music\mvm_start_last_wave.wav"
+			FirstSpawnWarningSound "music\mvm_start_last_wave.wav"
 			
-			Where spawnbot
-			TotalCount 1
-			MaxActive 1
-			SpawnCount 1
-			WaitBeforeStarting 0
-			WaitBetweenSpawns 0
-			TotalCurrency 1
-			
+			TotalCount 0
 			Support Limited
-			
-			TFBot
-			{
-				Class Scout
-				Name "Harbinger"
-				Skill Expert
-				ClassIcon dead
-				Attributes DisableDodge
-				Attributes SuppressFire
-				Attributes AlwaysCrit
-				WeaponRestrictions MeleeOnly
-				Item "Unarmed Combat"
-				Item "Dillinger's Duffel"
 				
-				CharacterAttributes
+				TFBot
 				{
-					"move speed bonus"	0.4
-					"head scale" 0.01
-					"active health degen" -5
-					"voice pitch scale" 0
+					Class Scout
+					ClassIcon scout
+					Attributes AlwaysCrit
 				}
-			}
 		}
-		
 		
 		//Wave 8: Boss Heavy, RandomChoice Crit Demoknight/Crit Huntsman
 		//Cash: $901
 		
 		WaveSpawn // :) One last laugh.
 		{
-			WaitForAllDead "harbinger"
+			WaitForAllDead "wave7phase3"
 			
 			FirstSpawnWarningSound "vo\mvm\mght\heavy_mvm_m_cheers06.mp3"
 			
@@ -2176,6 +2376,7 @@ WaveSchedule
 					"max health additive bonus" 4999
 					"lunchbox adds minicrits" 2
 					"health regen" 1250
+					"alt-fire disabled" 1
 				}
 				ItemAttributes
 				{
@@ -2193,14 +2394,14 @@ WaveSchedule
 		
 		WaveSpawn
 		{
-			WaitForAllDead "harbinger"
+			WaitForAllDead "wave7phase3"
 			Name "wave8phase2"
 			
 			Where spawnbot
 			TotalCount 60
 			MaxActive 16
 			SpawnCount 2
-			WaitBeforeStarting 10
+			WaitBeforeStarting 12
 			WaitBetweenSpawns 2
 			TotalCurrency 1500
 			
@@ -2215,6 +2416,7 @@ WaveSchedule
 					Skill Expert
 					MaxVisionRange 2500
 					ClassIcon dead
+					Scale 0.8
 					Item "The Huntsman"
 					Attributes DisableDodge
 					Attributes HoldFireUntilFullReload
@@ -2224,7 +2426,7 @@ WaveSchedule
 					{
 						ItemName "The Huntsman"
 						"reload time decreased" 0.4
-						"damage penalty" 0.5
+						"damage penalty" 0.7
 					}
 				}
 				TFBot
@@ -2232,12 +2434,9 @@ WaveSchedule
 					Class Demoman
 					Name "Critical Demoknight"
 					ClassIcon dead
+					Scale 0.8
 					MaxVisionRange 400
 					Skill Expert
-					Attributes AirChargeOnly
-					Attributes AutoJump
-						AutoJumpMin 13
-						AutoJumpMax 13
 					Attributes AlwaysCrit
 					WeaponRestrictions MeleeOnly
 					Item "The Eyelander"
@@ -2245,11 +2444,10 @@ WaveSchedule
 					ItemAttributes
 					{
 						ItemName "The Eyelander"
-						"damage penalty" 0.5
+						"damage penalty" 0.8
 					}
 				}
 			}
 		}
-
 	}
 }
