@@ -87,16 +87,6 @@
 				
 				"OnUser1" "@c@!activator,$GetProp$m_hOwnerEntity,!caller|$SetKey$case01|,0,1"
 			}
-			logic_case
-			{
-				"targetname" "rafmod_eyelander_setup3"
-				"case16" "OutValue %:$TestEntity:%:0:-1"
-				"case01" "rafmod_eyelander_condition_for_regen"
-				"case02" "player"
-				"ondefault" "rafmod_eyelander_headcount,AddOutput,,0,-1"
-				
-				"OnUser1" "@c@!activator,$GetProp$m_hOwnerEntity,!caller|$SetKey$case02|,0,1"
-			}
 			math_counter
 			{
 				"targetname" "rafmod_eyelander_headcount"
@@ -104,7 +94,7 @@
 				"OutValue"	"rafmod_eyelander_math2,SetValueNoFire,,0,-1"
 				"OutValue"	"!self,GetValue,,0.1,-1"
 				"OnGetValue"	"rafmod_eyelander_math1,Multiply,-15,0,4"		//removes heads to be replaced by another stat
-				"OnGetValue"	"rafmod_eyelander_math2,Multiply,5,0,-1"	//amount of kills can be made. Set to -1 for now
+				"OnGetValue"	"rafmod_eyelander_math2,Multiply,15,0,-1"	//amount of kills can be made. Set to -1 for now
 				"OnGetValue"	"rafmod_eyelander_setup2,$Format,,0,-1"
 			}
 			logic_case
