@@ -1,0 +1,153 @@
+///////////////////////////////////////////////////////
+/// Yaki's Infinite Eyelander HP Stacking Template	///
+/// Sign Date: 9 Dec 21								///
+///////////////////////////////////////////////////////
+
+/// How this works
+/// Try it yourself!
+
+	
+	ItemAttributes 
+	{
+		ItemName "The Eyelander"
+		"fire input on kill" "!activator^$FireUserAsActivator4^0"	//enables infinite decaps in logic
+	}
+	PlayerItemEquipSpawnTemplate
+	{
+		Name equip_eyelander
+		ItemName "The Eyelander"
+	}
+	
+	PlayerSpawnTemplate
+	{
+		Name "template_name_players"
+	}
+
+	PointTemplates
+	{
+		template_name_players
+		{
+	//
+	// names player every time they spawn
+	//
+			OnSpawnOutput
+			{
+				Target "@c@!activator"
+				Action "$GetProp$m_hOwnerEntity"
+				Param "!activator|$SetKey$targetname|"
+				Delay 0.4
+			}
+		}
+	
+	//
+	// Here's where the fun begins
+	//
+		equip_eyelander
+		{
+			OnSpawnOutput
+			{
+				Target "rafmod_eyelander_setup1"
+				Action "FireUser1"
+				Delay 0.5
+			}
+			OnSpawnOutput
+			{
+				Target "rafmod_eyelander_setup2"
+				Action "FireUser1"
+				Delay 0.5
+			}
+			OnSpawnOutput
+			{
+				Target "rafmod_eyelander_setup1"
+				Action "$Format"
+				Delay 1
+			}
+			OnSpawnOutput
+			{
+				Target "!activator"
+				Action "Fireuser4"
+				Delay 1.5
+			}
+			logic_case
+			{
+				"targetname" "rafmod_eyelander_setup1"
+				"case16" "ondefault %:AddOutput::0:-1"
+				"case01" "player"
+				"ondefault" "rafmod_eyelander_setup2,AddOutput,,0,1"
+				
+				"OnUser1" "@c@!activator,$GetProp$m_hOwnerEntity,!caller|$SetKey$case01|,0,1"
+				"OnUser1" "rafmod_eyelander_setup2,$Format,,1,1"
+			}
+			logic_case
+			{
+				"targetname" "rafmod_eyelander_setup2"
+				"case16" "OnUser4 %:$GetProp$m_iDecapitations:%|SetValue|:0:1"
+				"case01" "player"
+				"case02" "rafmod_eyelander_headcount"
+				
+				"OnUser1" "@c@!activator,$GetProp$m_hOwnerEntity,!caller|$SetKey$case01|,0,1"
+			}
+			logic_case
+			{
+				"targetname" "rafmod_eyelander_setup3"
+				"case16" "OutValue %:$TestEntity:%:0:-1"
+				"case01" "rafmod_eyelander_condition_for_regen"
+				"case02" "player"
+				"ondefault" "rafmod_eyelander_headcount,AddOutput,,0,-1"
+				
+				"OnUser1" "@c@!activator,$GetProp$m_hOwnerEntity,!caller|$SetKey$case02|,0,1"
+			}
+			math_counter
+			{
+				"targetname" "rafmod_eyelander_headcount"
+				"OutValue"	"rafmod_eyelander_math1,SetValueNoFire,,0,4"
+				"OutValue"	"rafmod_eyelander_math2,SetValueNoFire,,0,-1"
+				"OutValue"	"!self,GetValue,,0.1,-1"
+				"OnGetValue"	"rafmod_eyelander_math1,Multiply,-15,0,4"		//removes heads to be replaced by another stat
+				"OnGetValue"	"rafmod_eyelander_math2,Multiply,5,0,-1"	//amount of kills can be made. Set to -1 for now
+				"OnGetValue"	"rafmod_eyelander_setup2,$Format,,0,-1"
+			}
+			logic_case
+			{
+				"targetname" "rafmod_eyelander_case1"
+				"case16" "max health additive penalty|%|2"
+				"case01" "0"
+				"ondefault" "!activator,$AddItemAttribute,,0,-1"
+			}
+			math_counter
+			{
+				"targetname" "rafmod_eyelander_math1"
+				"OutValue" "rafmod_eyelander_math1_fix,SetValueNoFire,,0,-1"
+				"OutValue" "rafmod_eyelander_math1_fix,Add,-25,0.1,-1"
+			}
+			math_counter
+			{
+				"targetname" "rafmod_eyelander_math1_fix"
+				"min" "0"
+				"max" "-85"
+				"OutValue" "rafmod_eyelander_case1,$SetKey$case01,,0,-1"
+				"OutValue" "rafmod_eyelander_case1,$Format,,0.1,-1"
+			}
+			logic_case
+			{
+				"targetname" "rafmod_eyelander_case2"
+				"case16" "max health additive bonus|%|2"
+				"case01" "0"
+				"ondefault" "!activator,$AddItemAttribute,,0,-1"
+			}
+			math_counter
+			{
+				"targetname" "rafmod_eyelander_math2"
+				"OutValue" "rafmod_eyelander_case2,$SetKey$case01,,0,-1"
+				"OutValue" "rafmod_eyelander_case2,$Format,,0.1,-1"
+			}
+			
+			RemoveIfKilled "rafmod_eyelander_setup1"
+			RemoveIfKilled "rafmod_eyelander_setup2"
+			RemoveIfKilled "rafmod_eyelander_headcount"
+			RemoveIfKilled "rafmod_eyelander_case1"
+			RemoveIfKilled "rafmod_eyelander_math1"
+			RemoveIfKilled "rafmod_eyelander_math1_fix"
+			RemoveIfKilled "rafmod_eyelander_case2"
+			RemoveIfKilled "rafmod_eyelander_math2"
+		}
