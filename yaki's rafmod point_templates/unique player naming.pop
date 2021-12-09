@@ -1,0 +1,44 @@
+///////////////////////////////////////////////
+/// Yaki's Unique Player Naming Template	///
+/// Sign Date: 9 Dec 21						///
+///////////////////////////////////////////////
+
+/// How this works
+/// Each gun, projectile, building, etc, has an inherent ID value called "m_hOwnerEntity".
+/// The "m_hOwnerEntity" is the player we can trace. However, by default, there is no way to trace the "m_hOwnerEntity" value back to their player (that I'm aware of).
+/// So to trace player, we name the player the same OwnerEntity ID of the weapon they're holding.
+/// In this way, we can trace projectiles back to their owners.
+
+	PlayerSpawnTemplate
+	{
+		Name "template_name_players"
+	}
+	
+	PointTemplates
+	{
+		template_name_players
+		{
+	// names player every time they spawn
+			OnSpawnOutput
+			{
+				Target "@c@!activator"
+				Action "$GetProp$m_hOwnerEntity"
+				Param "!activator|$SetKey$targetname|"
+				Delay 0.4
+			}
+			
+	// Here, we have some filters you can use to find the player.
+			OnSpawnOutput
+			{
+				Target "rafmod_filter_named_player_by_key"
+				Action "FireUser1"
+				Delay 0.4
+			}
+			filter_activator_name
+			{
+				"targetname" "rafmod_filter_named_player_by_key"
+				"filtername" "z"
+				"OnUser1" "@c@!activator,$GetProp$m_hOwnerEntity,!caller|$SetKey$filtername|,0,1"	//sets the Filter to the !activator's weapon ID value.
+			}
+		}
+	}

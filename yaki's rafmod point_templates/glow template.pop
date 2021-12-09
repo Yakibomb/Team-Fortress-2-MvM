@@ -1,0 +1,15 @@
+/// Yaki's Player Glow template
+/// Sign Date: 9 Dec 21
+
+
+/// Things to note:
+/// This works on any player, base_boss (tanks, Merasmus, HHHH, etc), and Engineer obj_* (Sentry, Dispensers, Teleporters).
+/// Add this to your mission if you want glows for these types of things
+
+			OnSpawnOutput
+			{
+				Target "!activator"
+				Action "$SetProp$m_bGlowEnabled"
+				Delay 0
+				Param "1"
+			}
