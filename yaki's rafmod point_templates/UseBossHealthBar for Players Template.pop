@@ -1,0 +1,35 @@
+///////////////////////////////////////////////////////
+/// Yaki's Give-Players-Boss-Health-Bars Template	///
+/// Sign Date: 11 Nov 21							///
+///////////////////////////////////////////////////////
+
+// How this template works
+// Like MvM Boss Robots, Players can have health bars that display at the top of the screen.
+// By default, the class icon that displays is the class you're playing as.
+// + This can be changed, too! Use $SetProp$m_iszClassIcon to change it to any icon you want!
+
+	PlayerSpawnTemplate
+	{
+		Name "player_boss_healthbar"
+	}
+
+	PointTemplates
+	{
+		player_boss_healthbar
+		{
+			OnSpawnOutput
+			{
+				Target "!activator"
+				Action "$SetProp$m_bUseBossHealthBar"	//grabs prop for UseBossHealthBar
+				Delay 0
+				Param "1"	//sets UseBossHealthBar
+			}
+			OnSpawnOutput
+			{
+				Target "!activator"
+				Action "$SetProp$m_iszClassIcon"	//grabs prop for UseBossHealthBar
+				Delay 0
+				Param "medic_armored_giant"		//any class icon that appears on the wave bar can appear next to the health bar
+			}
+		}
+	}
