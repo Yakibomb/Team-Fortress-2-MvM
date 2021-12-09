@@ -288,6 +288,16 @@ WaveSchedule
 				"OnFail" "rocket_minisentry_has_ammo_can_fire_math,Add,0,0,-1"			//forces OutValue to refire
 				"OnFail" "!activator,$PlaySound,Building_Sentrygun.Empty,0,-1"
 			}
+			RemoveIfKilled "rafmod_filter_minirocketsentry_obj_sentrygun"
+			RemoveIfKilled "rafmod_obj_minirocket_trigger"
+			RemoveIfKilled "rafmod_rocket_mini_shooter"
+			RemoveIfKilled "rafmod_filter_rocket_mini_can_fire"
+			RemoveIfKilled "rafmod_filter_rocket_mini_is_player_controlled"
+			RemoveIfKilled "rafmod_relay_rocket_mini_fire"
+			RemoveIfKilled "rocket_minisentry_has_ammo_can_fire_math"
+			RemoveIfKilled "rafmod_filter_rocket_mini_state"
+			RemoveIfKilled "rafmod_filter_rocket_mini_disabled"
+			RemoveIfKilled "rafmod_filter_rocket_mini_has_enough_ammo"
 		}
 	}
 }
