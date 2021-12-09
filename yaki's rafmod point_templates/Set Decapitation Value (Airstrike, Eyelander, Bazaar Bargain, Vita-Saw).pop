@@ -1,0 +1,65 @@
+///////////////////////////////////////////////////////////////
+/// Yaki's Template for setting Decap Value			 		///
+/// for Airstrike, Eyelander, Vita-Saw and Bazaar Bargain	///
+/// Sign Date: 27 Nov 21									///
+///////////////////////////////////////////////////////////////
+
+// Trivia: Eyelander, Airstrike, Vita-Saw, and Bazaar Bargain use the same value to keep track of their bonuses.
+// We can manipulate that value to our will, using Point Templates!
+// The max value for any is 255
+// Trivia again: Setting the head count on a Demoman to a negative number actually removes health and speed! Who'da thunk.
+
+SpawnTemplate "initialize_decap_logic"  // put this in WaveSchedule
+
+PointTemplates
+{
+		initialize_decap_logic
+		{
+				NoFixUp	1
+				filter_tf_class
+				{
+					"targetname"	"filter_decap_conditions"
+					"tfclass"	"4"		//	filtered to Demoman
+					"OnPass"	"!activator,$SetProp$m_iDecapitations,4,0,-1"	// Sets head count to 4; Chargin' Targe damage maxes at 5 heads
+					"OnPass"	"!activator,$AddCond,18,0,-1"			// Enables eye-glow from Eyelander
+					"OnPass"	"!activator,$Regenerate,,0.01,-1"		// Used to fix speed and health on respawn.
+				}
+				filter_tf_class
+				{
+					"targetname"	"filter_decap_conditions"
+					"tfclass"	"2"		//	filtered to Sniper
+					"OnPass"	"!activator,$SetProp$m_iDecapitations,6,0,-1"	// Max charge rate bonuses the Bazaar Bargain allows for
+				}
+				filter_tf_class
+				{
+					"targetname"	"filter_decap_conditions"
+					"tfclass"	"3"		//	filtered to Soldier
+					"OnPass"	"!activator,$SetProp$m_iDecapitations,4,0,-1"	// Max clip size bonuses the Airstrike allows for
+					"OnPass"	"!activator,$RefillAmmo,,0.01,-1"		// Used to fix clip size on respawn
+				}
+				filter_tf_class
+				{
+					"targetname"	"filter_decap_conditions"
+					"tfclass"	"5"		//	filtered to Medic
+					"OnPass"	"!activator,$SetProp$m_iDecapitations,4,0,-1"	// Max organs to retain Uber on death the Vita-Saw allows for
+				}
+		}
+}
+
+
+
+/// Then when the player respawns:
+
+PlayerSpawnTemplate	"player_onspawn_attributes"	// When players respawn, spawn this template
+
+PointTemplates	// new templates
+{
+		player_onspawn_attributes	// For when player respawns
+		{
+				OnSpawnOutput
+				{
+					Target "filter_decap_conditions"
+					Action "TestActivator"
+				}
+		}
+}
