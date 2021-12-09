@@ -1,0 +1,99 @@
+///////////////////////////////////////////////////////////
+/// Yaki's Magic Fire Arrows Arrows for Sniper Template	///
+/// Sign Date: 9 Dec 21									///
+///////////////////////////////////////////////////////////
+
+// This template adds magic to Sniper's arrows
+// How it works to the Average Joe:
+// + Gaining addcond condition 65 makes Sniper's arrows a fireball.
+// How it works under-the-hood to the techie:
+// + Players are named upon respawn.
+// + When the Sniper fires the arrow, it'll check for the arrow's owner and test a filter to the player's targetname using $TestEntity
+// + If the player has condition 65, the filter passes and enables the particle.
+// Why names? It's explained below. Please read on.
+
+	PlayerSpawnTemplate
+	{
+		Name "template_name_players"
+	}
+	
+	
+	PointTemplates
+	{
+		template_name_players
+		{
+	// names player every time they spawn
+			OnSpawnOutput
+			{
+				Target "@c@!activator"
+				Action "$GetProp$m_hOwnerEntity"
+				Param "!activator|$SetKey$targetname|"
+				Delay 0.4
+			}
+		}
+	}
+
+/// The issue with "AttachToProjectile 1" is that it doesn't make the player the !activator.
+/// That's why we use names here--The owner of the projectile is the same as the player's name, so it's universal and very flexible.
+
+	PlayerShootTemplate
+	{
+		Name shoot_huntsman_firearrow
+		AttachToProjectile 1
+		Classname tf_weapon_compound_bow
+	}
+	
+	PointTemplates
+	{
+		shoot_huntsman_firearrow
+		{
+	// Here, we grab the owner# of the projectile, which is !activator.
+			OnSpawnOutput
+			{
+                Target "!activator"
+                Action "$GetProp$m_hOwnerEntity"
+				Param "magicarrow_get_player|$SetKey$case01|"
+			}
+			
+	// $Format to "magicarrow_get_player" changes the "%" to the owner#.
+	// Remember, the owner# IS the player's name.
+			OnSpawnOutput
+			{
+                Target "magicarrow_get_player"
+                Action "$Format"
+                Delay 0.01
+			}
+	// The player is grabbed here--The filter used is the filter_tf_condition (below this logic_case)
+			logic_case
+			{
+				"targetname" "magicarrow_get_player"
+				"case16" "OnUser1 rafmod_filter_sniper_fire_arrows:$TestEntity:%:0:1"	//adds OnUser1 output to !caller, which is itself
+				"case01" "z"
+				"ondefault" "!caller,AddOutput,,0,1"	//caller is "magicarrow_get_player"
+				"ondefault"	"!caller,FireUser1,,0,1"
+				
+				"OnUser1" "!caller,Kill,,0,1"
+			}
+			filter_tf_condition
+			{
+				"targetname" "rafmod_filter_sniper_fire_arrows"
+				"condition" "65"		// unused condition
+				
+				"OnPass" "fire_arrow_particle,Start,,0,1"
+				
+				"OnPass" "!caller,Kill,,0,1"	//cleanup
+				"OnFail" "!caller,Kill,,0,1"	//cleanup
+			}
+			
+	// Literally can be anything you want to add onto the arrows. Here it's just the particle.
+            info_particle_system
+            {
+                "targetname" "fire_arrow_particle"
+                "effect_name" "spell_fireball_small_red"
+				"start_active" "0"
+				"flag_as_weather" "0"
+            }
+			
+	// Cleanup happens about 1 second after the arrow projectile hits a wall. So no need for RemoveIfKilled outputs.
+		}
+	}
