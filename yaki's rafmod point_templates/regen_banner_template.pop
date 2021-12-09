@@ -1,0 +1,50 @@
+///////////////////////////////////////////
+/// Yaki's Banner Rage Regen Template	///
+/// Sign Date: 9 Dec 21					///
+///////////////////////////////////////////
+
+// This template regenerates banner charge
+// Banners regenerate 5 charge every 1 second. Numbers can easily be modified.
+
+/// Make sure to place the template onto the banner, like this:
+	PlayerItemEquipSpawnTemplate
+	{
+		Name "template_equip_banner_rage_regen"
+		ClassName tf_weapon_buff_item
+	}
+	
+/// Template itself
+	PointTemplates
+	{
+		template_equip_banner_rage_regen	//made by Yakibomb
+		{
+		    OnSpawnOutput
+		    {
+				Target "rage_regenerator_math"
+				Action "GetValue"
+				Delay 0
+		    }
+			
+// Technically, the banner regen is a logic loop.
+// + It checks every 1 second to see if the banner is draining, and if no, adds to the rage meter.
+		    logic_branch
+		    {
+				"targetname" "rage_regenerator_IsRageDraining"
+				"OnTrue" "rage_regenerator_math,Add,0,0,-1"
+				"OnFalse" "rage_regenerator_math,Add,5,0,-1"    // Rage charge amount gained
+		    }
+		    math_counter
+		    {
+				"targetname" "rage_regenerator_math"
+				"min" "0"
+				"max" "100"
+				"OutValue" "!activator,$DisplayTextChat,,0,-1"
+				"OutValue" "!activator,$SetProp$m_flRageMeter,,0,-1"
+				"OutValue" "rage_regenerator_math,GetValue,,1,-1"    // Time it takes to add Rage to the meter
+				"OnGetValue" "!activator,$GetProp$m_flRageMeter,!caller|SetValueNoFire|,0,-1"
+				"OnGetValue" "!activator,$GetProp$m_bRageDraining,rage_regenerator_IsRageDraining|SetValueTest|,0,-1"
+		    }
+		    RemoveIfKilled "rage_regenerator_math"
+		    RemoveIfKilled "rage_regenerator_IsRageDraining"
+		}
+	}
