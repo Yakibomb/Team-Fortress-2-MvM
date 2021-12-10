@@ -4,10 +4,10 @@
 ///////////////////////////////////////////////
 
 /// How this works
-/// Each gun, projectile, building, etc, has an inherent ID value called "m_hOwnerEntity".
-/// The "m_hOwnerEntity" is the player we can trace. However, by default, there is no way to trace the "m_hOwnerEntity" value back to their player (that I'm aware of).
-/// So to trace player, we name the player the same OwnerEntity ID of the weapon they're holding.
-/// In this way, we can trace projectiles back to their owners.
+/// We can't trace a projectile or building owner ID back to the player by using "TestActivator" or "$TestEntity" on the player, *unless* we name the player the same ID.
+/// To trace a projectile/building back to a player using TestActivator or $TestEntity, we name the player by setting the "targetname" of prop value "m_hOuter".
+/// "m_hOuter" is the same as projectile "m_hOwnerEntity" prop value, or "m_hBuilder" prop value for buildings.
+/// In this way, we can trace projectiles/buildings back to their owners, because both the name and projectile/building ID match.
 
 	PlayerSpawnTemplate
 	{
@@ -21,8 +21,8 @@
 	// names player every time they spawn
 			OnSpawnOutput
 			{
-				Target "@c@!activator"
-				Action "$GetProp$m_hOwnerEntity"
+				Target "!activator"
+				Action "$GetProp$m_hOuter"
 				Param "!activator|$SetKey$targetname|"
 				Delay 0.4
 			}
@@ -38,7 +38,7 @@
 			{
 				"targetname" "rafmod_filter_named_player_by_key"
 				"filtername" "z"
-				"OnUser1" "@c@!activator,$GetProp$m_hOwnerEntity,!caller|$SetKey$filtername|,0,1"	//sets the Filter to the !activator's weapon ID value.
+				"OnUser1" "!activator,$GetProp$m_hOuter,!caller|$SetKey$filtername|,0,1"	//sets the Filter to the !activator's weapon ID value.
 			}
 		}
 	}
