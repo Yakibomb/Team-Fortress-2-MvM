@@ -4,7 +4,9 @@
 ///////////////////////////////////////////////////////
 
 /// How this works
-/// Try it yourself!
+/// The player given a targetname based on their weapon's owner ID.
+/// Upon killing a bot, players input "FireUser4" to themselves to activate the infinite Eyelander decap logic.
+/// + The max health penalty is increased each decapitation up to 4. This allows the max health bonus to stack quite cleanly onto the Eyelander.
 
 	
 	ItemAttributes 
@@ -32,8 +34,8 @@
 	//
 			OnSpawnOutput
 			{
-				Target "@c@!activator"
-				Action "$GetProp$m_hOwnerEntity"
+				Target "!activator"
+				Action "$GetProp$m_hOuter"
 				Param "!activator|$SetKey$targetname|"
 				Delay 0.4
 			}
@@ -75,7 +77,7 @@
 				"case01" "player"
 				"ondefault" "rafmod_eyelander_setup2,AddOutput,,0,1"
 				
-				"OnUser1" "@c@!activator,$GetProp$m_hOwnerEntity,!caller|$SetKey$case01|,0,1"
+				"OnUser1" "!activator,$GetProp$m_hOuter,!caller|$SetKey$case01|,0,1"
 				"OnUser1" "rafmod_eyelander_setup2,$Format,,1,1"
 			}
 			logic_case
@@ -85,7 +87,7 @@
 				"case01" "player"
 				"case02" "rafmod_eyelander_headcount"
 				
-				"OnUser1" "@c@!activator,$GetProp$m_hOwnerEntity,!caller|$SetKey$case01|,0,1"
+				"OnUser1" "!activator,$GetProp$m_hOuter,!caller|$SetKey$case01|,0,1"
 			}
 			math_counter
 			{
