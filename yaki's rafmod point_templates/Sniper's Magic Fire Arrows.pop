@@ -7,7 +7,7 @@
 // How it works to the Average Joe:
 // + Gaining addcond condition 65 makes Sniper's arrows a fireball.
 // How it works under-the-hood to the techie:
-// + Players are named upon respawn.
+// + Players are named the same projectile ID upon respawn.
 // + When the Sniper fires the arrow, it'll check for the arrow's owner and test a filter to the player's targetname using $TestEntity
 // + If the player has condition 65, the filter passes and enables the particle.
 // Why names? It's explained below. Please read on.
@@ -25,8 +25,8 @@
 	// names player every time they spawn
 			OnSpawnOutput
 			{
-				Target "@c@!activator"
-				Action "$GetProp$m_hOwnerEntity"
+				Target "!activator"
+				Action "$GetProp$m_hOuter"
 				Param "!activator|$SetKey$targetname|"
 				Delay 0.4
 			}
