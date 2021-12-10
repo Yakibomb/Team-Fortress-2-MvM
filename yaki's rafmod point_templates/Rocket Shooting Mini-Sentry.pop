@@ -9,16 +9,16 @@
 // (however always fires while wrangled. Haven't figured that one out yet)
 
 // Rockets cost 10 ammo. Change the ammo used on these lines:
-// Threshhold amount == Line 281
-// Ammo subtracted == Line 284
+// Threshhold amount == Line 288
+// Ammo subtracted == Line 291
 
 // The fire rates are on these lines
-// Non-Wrangled Sentry (1 sec) == Line 244
-// Wrangled Sentry (0.5 sec) == Line 245
+// Non-Wrangled Sentry (1 sec) == Line 251
+// Wrangled Sentry (0.5 sec) == Line 252
 
 // Other useful adjustments
-// Origin of where rockets shoot from == Line 198
-// How often logic checks sentry status == Line 225
+// Origin of where rockets shoot from == Line 205
+// How often logic checks sentry status == Line 232
 
 WaveSchedule
 {
@@ -50,6 +50,12 @@ WaveSchedule
 		{
 			WaitBeforeStarting 5
 		}
+	}
+		
+	ItemAttributes
+	{
+		ItemName "The Gunslinger"
+		"engy sentry damage bonus" 0	//makes normal bulletfire not deal damage
 	}
 	
 /// ... onto the actual template...
@@ -182,6 +188,7 @@ WaveSchedule
 				"OnStartTouchAll" "!activator,AddOutput,OnUser2 rafmod_filter_rocket_mini_can_fire:TestActivator::0:1,0,1"	//allows for firing of rockets
 				"OnStartTouchAll" "!activator,FireUser2,,1,1"	// begins the check loop
 				"OnStartTouchAll" "!activator,$SetVar$rocket_can_fire,1,0,1"	//custom var allows us to not have to name the sentrygun
+				"OnStartTouchAll" "!activator,$SetKey$spawnflags,8,0,1"		//sets the sentry to have infinite ammo when shooting normally
 			}
 			
 	/// sets the weapon mimic owner to sentry
