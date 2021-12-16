@@ -69,13 +69,13 @@
 		{
 			OnSpawnOutput
 			{
-				Target "rafmod_filter_soldier_booze_banner_custommodel"
+				Target "rafmod_filter_weapon_setmodel_cold_case_soldier"
 				Action "TestActivator"
 				Delay 0.01
 			}
 			filter_tf_class
 			{
-				"targetname" "rafmod_filter_soldier_booze_banner_custommodel"
+				"targetname" "rafmod_filter_weapon_setmodel_cold_case_soldier"
 				"tfclass" "3"
 				"OnPass" "@c@!activator,$SetKey$solid,2,0,1"	//sets tf_wearable to Solid 2 so it passes. Don't ask me why this works.
 				"OnPass" "@c@!activator,AddOutput,OnUser1 rafmod_filter_weapon_setmodel_cold_case_soldier:TestActivator::0:1,0.1,1"
@@ -83,11 +83,11 @@
 			}
 			OnSpawnOutput
 			{
-				Target "rafmod_filter_soldier_booze_banner_custommodel"
+				Target "rafmod_filter_weapon_setmodel_cold_case_soldier"
 				Action "Kill"
 				Delay 0.1
 			}
-			RemoveIfKilled "rafmod_filter_soldier_booze_banner_custommodel"
+			RemoveIfKilled "rafmod_filter_weapon_setmodel_cold_case_soldier"
 		}
 	}
 	
