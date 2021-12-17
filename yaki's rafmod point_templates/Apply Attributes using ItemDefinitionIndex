@@ -69,13 +69,13 @@
 		{
 			OnSpawnOutput
 			{
-				Target "rafmod_filter_weapon_setmodel_cold_case_soldier"
+				Target "rafmod_filter_soldier_booze_banner_custommodel"
 				Action "TestActivator"
 				Delay 0.01
 			}
 			filter_tf_class
 			{
-				"targetname" "rafmod_filter_weapon_setmodel_cold_case_soldier"
+				"targetname" "rafmod_filter_soldier_booze_banner_custommodel"
 				"tfclass" "3"
 				"OnPass" "@c@!activator,$SetKey$solid,2,0,1"	//sets tf_wearable to Solid 2 so it passes. Don't ask me why this works.
 				"OnPass" "@c@!activator,AddOutput,OnUser1 rafmod_filter_weapon_setmodel_cold_case_soldier:TestActivator::0:1,0.1,1"
@@ -83,11 +83,11 @@
 			}
 			OnSpawnOutput
 			{
-				Target "rafmod_filter_weapon_setmodel_cold_case_soldier"
+				Target "rafmod_filter_soldier_booze_banner_custommodel"
 				Action "Kill"
 				Delay 0.1
 			}
-			RemoveIfKilled "rafmod_filter_weapon_setmodel_cold_case_soldier"
+			RemoveIfKilled "rafmod_filter_soldier_booze_banner_custommodel"
 		}
 	}
 	
@@ -106,18 +106,34 @@
 	}
 	
 /// This works like lesson #1, but every time the player spawns.
-/// + This sends the value of the "m_iItemDefinitionIndex" to a logic_case to be tested.
-/// + The logic_cases MUST be spawned with "NoFixup 1" and be in the map beforehand.
+/// + This sends the value of the "m_iItemDefinitionIndex" to a $filter_sendprop to be tested.
+/// + The filters MUST be spawned with "NoFixup 1" and be in the map beforehand.
 	PointTemplates
 	{
 		player_attributes_onspawn
 		{
+	/// Required for the reason: Source
 			OnSpawnOutput
 			{
-				Target "@c@!activator"		//fires to the children of the parent, !activator.
-				Action "$GetProp$m_iItemDefinitionIndex"	//Grabs the prop value for ItemDefinitionIndex (items_game value).
-				Param "rafmod_case_weapon_ItemDefinitionIndex|InValue|"		//sends value to a logic_case
-				Delay 0.01
+				Target "@c@!activator"
+				Action "$SetKey$solid"
+				Param "2"
+				Delay 0.1
+			}
+	/// This adds an output to all children parented to the !activator (player)
+			OnSpawnOutput
+			{
+				Target "@c@!activator"
+				Action "AddOutput"
+				Param "OnUser1 rafmod_filter_weapon_setmodel:TestActivator::0:1"
+				Delay 0.2
+			}
+	/// Fires User1, while each child is the !activator (otherwise, it would be the player as the !activator. We don't want that.)
+			OnSpawnOutput
+			{
+				Target "@c@!activator"
+				Action "$FireUserAsActivator1"
+				Delay 0.3
 			}
 		}
 	}
@@ -130,8 +146,6 @@
 		Name "initialize_logic_apply_weapon_attributes"
 	}
 	
-/// Next part credit to Mince:
-/// This uses logic_cases to send the m_iItemDefinitionIndex, and if they match, triggers a relay to modify the Ubercharge level.
 
 	PointTemplates
 	{
@@ -139,77 +153,198 @@
 		{
 			NoFixup 1	//IMPORTANT!!
 			
-	/// These two logic_cases hold the values for every single type of Medigun.
-	/// When they pass, they trigger a relay to change the charge level. (very bottom of this lesson)
-			logic_case
-			{
-				"targetname" "rafmod_case_weapon_ItemDefinitionIndex"
-				"Case01"	"35"		//The Kritzkrieg
-				"Case02"	"411"		//The Quick-Fix
-				"Case03"	"998"		//The Vaccinator
-				"Case04"	"29"		//Stock TF_WEAPON_MEDIGUN
-				"Case05"	"211"		//Upgradeable TF_WEAPON_MEDIGUN
-				"Case06"	"663"		//Festive Medigun 2011
-				"Case07"	"796"		//Silver Botkiller Medi Gun Mk.I
-				"Case08"	"805"		//Gold Botkiller Medi Gun Mk.I
-				"Case09"	"885"		//Rust Botkiller Medi Gun Mk.I
-				"Case10"	"894"		//Blood Botkiller Medi Gun Mk.I
-				"Case11"	"903"		//Carbonado Botkiller Medi Gun Mk.Iv
-				"Case12"	"912"		//Diamond Botkiller Medi Gun Mk.I
-				"Case13"	"961"		//Silver Botkiller Medi Gun Mk.II
-				"Case14"	"970"		//Gold Botkiller Medi Gun Mk.II
-				
-				"OnCase01" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase02" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase03" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase04" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase05" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase06" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase07" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase08" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase09" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase10" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase11" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase12" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase13" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase14" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-			}
-			logic_case
-			{
-				"targetname" "rafmod_case_weapon_ItemDefinitionIndex"
-				"Case01"	"15008"		//concealedkiller_medigun_maskedmender
-				"Case02"	"15010"		//concealedkiller_medigun_wrappedreviver
-				"Case03"	"15025"		//craftsmann_medigun_reclaimedreanimator
-				"Case04"	"15039"		//teufort_medigun_civilservant
-				"Case05"	"15050"		//powerhouse_medigun_sparkoflife
-				"Case06"	"15078"		//harvest_medigun_wildwood
-				"Case07"	"15097"		//pyroland_medigun_flowerpower
-				"Case08"	"15120"		//gentlemanne_medigun_coffinnail
-				"Case09"	"15121"		//gentlemanne_medigun_dressedtokill
-				"Case10"	"15122"		//gentlemanne_medigun_highrollers
-				"Case11"	"15145"		//warbird_medigun_blitzkrieg
-				"Case12"	"15146"		//warbird_medigun_corsair
-				
-				"OnCase01" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase02" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase03" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase04" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase05" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase06" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase07" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase08" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase09" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase10" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase11" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-				"OnCase12" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
-			}
-			
-	/// A relay organizes all medigun charges to become the same value
-	/// We're looking at the prop "m_flChargeLevel" here...
+	// A relay organizes all medigun charges to become the same value
 			logic_relay
 			{
 				"targetname" "rafmod_relay_set_medigun_charge"
 				"OnTrigger" "!activator,$SetProp$m_flChargeLevel,1,0,-1"	//1 == 100% charge. Can go over or under via forcing the number.
 			}
+			
+	// All filters for each type of Medigun
+			$filter_sendprop		//The Kritzkrieg
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "35"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//The Quick-Fix
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "411"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//The Vaccinator
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "998"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+
+	// All the Medigun variations...
+			$filter_sendprop		//Stock TF_WEAPON_MEDIGUN
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "29"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//Upgradeable TF_WEAPON_MEDIGUN
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "211"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//Festive Medigun 2011
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "663"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//Silver Botkiller Medi Gun Mk.I
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "796"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//Gold Botkiller Medi Gun Mk.I
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "805"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//Rust Botkiller Medi Gun Mk.I
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "885"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//Blood Botkiller Medi Gun Mk.I
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "894"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//Carbonado Botkiller Medi Gun Mk.Iv
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "903"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//Diamond Botkiller Medi Gun Mk.I
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "912"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//Silver Botkiller Medi Gun Mk.II
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "961"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//Gold Botkiller Medi Gun Mk.II
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "970"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//concealedkiller_medigun_maskedmender
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "15008"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//concealedkiller_medigun_wrappedreviver
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "15010"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//craftsmann_medigun_reclaimedreanimator
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "15025"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//teufort_medigun_civilservant
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "15039"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//powerhouse_medigun_sparkoflife
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "15050"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//harvest_medigun_wildwood
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "15078"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//pyroland_medigun_flowerpower
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "15097"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//gentlemanne_medigun_coffinnail
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "15120"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//gentlemanne_medigun_dressedtokill
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "15121"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//gentlemanne_medigun_highrollers
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "15122"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//warbird_medigun_blitzkrieg
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "15145"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
+			$filter_sendprop		//warbird_medigun_corsair
+			{
+				"targetname" "rafmod_filter_weapon_ItemDefinitionIndex"
+				"$name"	"m_iItemDefinitionIndex"
+				"$value" "15146"
+				"OnPass" "!activator,rafmod_relay_set_medigun_charge,Trigger,,0,-1"
+			}
 		}
 	}
+///yeah... probably could've just set "@c@!activator,$SetProp$m_flChargeLevel,1" for all this...
