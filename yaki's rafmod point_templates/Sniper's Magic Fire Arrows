@@ -97,3 +97,4 @@
 	// Cleanup happens about 1 second after the arrow projectile hits a wall. So no need for RemoveIfKilled outputs.
 		}
 	}
+
