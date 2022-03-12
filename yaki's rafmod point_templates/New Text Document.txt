@@ -1,0 +1,18 @@
+/// Yaki's Mission Name Change in Scoreboard
+/// Sign Date: 12 Mar 22
+
+/// Description
+/// The name of the mission in the scoreboard can be changed with one output.
+
+	// Target "tf_objective_resource" with Action "$SetProp$m_iszMvMPopfileName", with Parameter as your new mission name.
+
+		OnSpawnOutput
+		{
+			Target "tf_objective_resource"
+			Action "$SetProp$m_iszMvMPopfileName"
+			Param "Yaki's Room"
+		}
+
+/// Disclaimer as of "12 Mar 22":
+/// By changing the mission name using this method, and beating the mission's last wave, will not reset the mission after all waves are completed.
+/// Instead, it will conclude the mission normally, but continue to whichever mission is next in the mapcycle.txt of the server.
