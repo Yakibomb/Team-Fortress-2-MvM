@@ -34,7 +34,7 @@
 /// This point template finds the tf_wearable on Soldier, and applies the attributes to it.
 /// This one does a $SetModelOverride to change the model.
 /// Note 1: You can do anything here--Change ammo types, clip size, color, renderfx, models, etc. This example just changes models.
-/// Note 2: Every single "tf_wearable" entity uses the ID "65535".
+/// Note 2: Every single "tf_wearable" entity that a weapon is tied to uses the ID "65535".
 	PointTemplates
 	{
 		initialize_logic_apply_weapon_attributes_cold_case
