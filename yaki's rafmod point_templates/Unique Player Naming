@@ -3,6 +3,8 @@
 /// Sign Date: 9 Dec 21						///
 ///////////////////////////////////////////////
 
+/// Please check "Sniper's Magic Fire Arrows" prefab for an example.
+
 /// How this works
 /// We can't trace a projectile or building owner ID back to the player by using "TestActivator" or "$TestEntity" on the player, *unless* we name the player the same ID.
 /// To trace a projectile/building back to a player using TestActivator or $TestEntity, we name the player by setting the "targetname" of prop value "m_hOuter".
