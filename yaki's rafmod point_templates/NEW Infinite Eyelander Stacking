@@ -1,0 +1,53 @@
+///////////////////////////////////////////////////
+/// Yaki's NEW Infinite Eyelander Stacking	    ///
+/// Sign Date: 20 April 2022		        	///
+///////////////////////////////////////////////////
+
+/// How this works
+/// Killing with the Eyelander will trigger a relay that recalculates the health and speed of the Eyelander user.
+/// This version only gives +5 max health and +1% move speed per head. Standard Eyelander is +15 health and +7% speed per head, up to 4.
+
+/// This method uses Expressions (https://sigwiki.potato.tf/index.php/Expressions)
+/// Using expressions here eliminates like, 90% of the lines to produce the same result.
+
+
+/// Paste this point template somewhere outside of the "Wave" brackets so the game always has access to it.
+
+	PointTemplates
+	{
+		initialize_eyelander_logic
+		{
+			NoFixup 1   //IMPORTANT!!
+            
+			logic_relay
+			{
+				"targetname" "eyelander_decap"
+				
+			// mods first four 4 heads by -10 HP (original: +15 HP per head)
+			// after 4 heads, adds +5 HP per head
+				"OnTrigger" "!activator,$AddItemAttribute,$$='hidden maxhealth non buffed|'..test(!activator.m_iDecapitations < 5,0 - (!activator.m_iDecapitations * 10),0 - 60 + (!activator.m_iDecapitations * 5))..'|2',0,-1"
+			// mods move speed by -6% per head, up to 4 heads (original: +7% per head)
+			// after 4 heads, adds +1% move speed per head
+				"OnTrigger" "!activator,$AddItemAttribute,$$='move speed bonus|'..test(!activator.m_iDecapitations < 5,float(1 - (!activator.m_iDecapitations * 0.056)),float(0.776 + (!activator.m_iDecapitations * 0.01)))..'|2',0,-1"
+			// recalculates move speed on kill
+				"OnTrigger" "!activator,$AddCond,32 0.01,0.01,0,-1"
+			// removes eyelander heads particle
+				"OnTrigger" "!activator,$RemoveCond,18,0,0,-1"
+			}
+		}
+	}
+
+/// Spawn it into the map. Again, be sure it's outside of the "Wave" brackets.
+
+	SpawnTemplate 
+	{
+		Name "initialize_eyelander_logic"
+		Origin "0 0 0" // Spawn location
+	}
+
+/// Lastly, add this attribute. It will fire the relay called "eyelander_decap" and recalculate the amount of decaps you have and convert it to health and speed.
+	ItemAttributes
+	{
+		ItemName "The Eyelander"
+		"fire input on kill" "eyelander_decap^Trigger"
+	}
