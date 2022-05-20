@@ -15,6 +15,7 @@
 	/// This logic_case can be looked at like a spreadsheet of which ItemDefinitionIndex each Medigun uses.
 	/// "ItemDefinitionIndex" is the ID for each weapon found in `items_game.txt`. It is unusually unique to each equip, hat, misc, etc.
 	///  The only exception is if a wearable is added by a weapon (like the Buff Banner's backpack).
+	/// If the ID matches the logic_case, it will set the Ubercharge to 100%.
 	
 			logic_case
 			{
