@@ -1,0 +1,106 @@
+///////////////////////////////////////////////////
+/// Apply Attributes using ItemDefinition IDs	///
+/// Sign Date: 16 Dec 21						///
+/// Updated: 20 May 22							///
+/// Requested by: Space Jockey					///
+/// Special Thanks: Mince						///
+///////////////////////////////////////////////////
+
+	PointTemplates
+	{
+		initialize_logic
+		{
+			NoFixup 1	//IMPORTANT!!
+			
+	/// This logic_case can be looked at like a spreadsheet of which ItemDefinitionIndex each Medigun uses.
+	/// "ItemDefinitionIndex" is the ID for each weapon found in `items_game.txt`. It is unusually unique to each equip, hat, misc, etc.
+	///  The only exception is if a wearable is added by a weapon (like the Buff Banner's backpack).
+	
+			logic_case
+			{
+				"targetname" "logic_find_medigun"
+				"Case01" "35"	//The Kritzkrieg
+				"Case02" "411"	//The Quick-Fix
+				"Case03" "998"	//The Vaccinator
+				"Case04" "29"	//Stock TF_WEAPON_MEDIGUN
+				"Case05" "211"	//Upgradeable TF_WEAPON_MEDIGUN
+				"Case06" "663"	//Festive Medigun 2011
+				"Case07" "796"	//Silver Botkiller Medi Gun Mk.I
+				"Case08" "805"	//Gold Botkiller Medi Gun Mk.I
+				"Case09" "885"	//Rust Botkiller Medi Gun Mk.I
+				"Case10" "894"	//Blood Botkiller Medi Gun Mk.I
+				"Case11" "903"	//Carbonado Botkiller Medi Gun Mk.Iv
+				"Case12" "912"	//Diamond Botkiller Medi Gun Mk.I
+				"Case13" "961"	//Silver Botkiller Medi Gun Mk.II
+				"Case14" "970"	//Gold Botkiller Medi Gun Mk.II
+				"Case15" "15008"	//concealedkiller_medigun_maskedmender
+				
+				"OnCase01" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase02" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase03" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase04" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase05" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase06" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase07" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase08" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase09" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase10" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase11" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase12" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase13" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase14" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase15" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+			}
+			logic_case
+			{
+				"targetname" "logic_find_medigun"
+				"Case01" "15010"	//concealedkiller_medigun_wrappedreviver
+				"Case02" "15025"	//craftsmann_medigun_reclaimedreanimator
+				"Case03" "15039"	//teufort_medigun_civilservant
+				"Case04" "15050"	//powerhouse_medigun_sparkoflife
+				"Case05" "15078"	//harvest_medigun_wildwood
+				"Case06" "15097"	//pyroland_medigun_flowerpower
+				"Case07" "15120"	//gentlemanne_medigun_coffinnail
+				"Case08" "15121"	//gentlemanne_medigun_dressedtokill
+				"Case09" "15122"	//gentlemanne_medigun_highrollers
+				"Case10" "15145"	//warbird_medigun_blitzkrieg
+				"Case10" "15146"	//warbird_medigun_corsair
+				
+				"OnCase01" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase02" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase03" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase04" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase05" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase06" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase07" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase08" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase09" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+				"OnCase10" "!activator,$SetProp$m_flChargeLevel,1,0,-1"
+			}
+		}
+	
+	/// This template is used to update the Medigun's charge.
+	/// In Summary, this adds an output to all children of the player (including the Medigun) to grab the Item Definition Index, found in items_game.txt
+		equip_medigun
+		{
+			OnSpawnOutput
+			{
+				Target "@c@!activator"
+				Action "AddOutput"
+				Param "OnUser1 logic_find_medigun:InValue:$$=!activator.m_iItemDefinitionIndex:0:1"
+			}
+			OnSpawnOutput
+			{
+				Target "@c@!activator"
+				Action "$FireUserAsActivator1"
+				Delay 0.01
+			}
+		}
+	}
+	
+	/// Finally, this makes the `equip_medigun` template useable by any player equipping a Medigun.
+	PlayerItemEquipSpawnTemplate
+	{
+		Name equip_medigun
+		Classname "tf_weapon_medigun"
+	}
